@@ -1,0 +1,42 @@
+<div class="modal-header">
+  <h4 class="modal-title">EDIT</h4>
+</div>
+<div class="modal-body">
+  <label for="">Task name</label>
+  <input type="text" class="form-control" ng-model="ModalInstanceCtrl.updatedItem.taskName" ng-value="ModalInstanceCtrl.updatedItem.taskName" ng-init="ModalInstanceCtrl.updatedItem.taskName=ModalInstanceCtrl.item.taskName">
+  <label for="">description</label>
+  <textarea name="" id="" cols="30" rows="10" class="form-control" row="3" ng-model="ModalInstanceCtrl.updatedItem.description" ng-value="ModalInstanceCtrl.item.description" ng-init="ModalInstanceCtrl.updatedItem.description=ModalInstanceCtrl.item.description"></textarea>
+  <div class="row">
+    <div class="col-md-6 form-inline">
+      <div class="form-group">
+        <label>Start date</label>
+          <div class="input-group">
+                      
+          <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="ModalInstanceCtrl.updatedItem.startDate" is-open="opened" ng-required="true" close-text="Close" datepicker-options="ModalInstanceCtrl.dateOptions" ng-init="ModalInstanceCtrl.updatedItem.startDate=ModalInstanceCtrl.item.startDate" >
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="ModalInstanceCtrl.openDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+          
+          </div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-inline col-md-8">
+      <div class="form-group">
+        <label for="">Duration</label>
+        <div class="input-group">
+          <span class="input-group-btn"><button class="btn btn-default" type="button" ng-click="ModalInstanceCtrl.updatedItem.duration=ModalInstanceCtrl.updatedItem.duration-1" ng-disable=" ModalInstanceCtrl.updatedItem.duration<1">-</button></span>
+          <input type="text" placeholder="Days" class="form-control" ng-model="ModalInstanceCtrl.updatedItem.duration" ng-init="ModalInstanceCtrl.updatedItem.duration=ModalInstanceCtrl.item.duration">
+          <span class="input-group-btn"><button class="btn btn-default" type="button" ng-click="ModalInstanceCtrl.updatedItem.duration=ModalInstanceCtrl.updatedItem.duration+1">+</button></span>
+          <span class="input-group-addon">End date: {{ModalInstanceCtrl.enddt(ModalInstanceCtrl.updatedItem.startDate,ModalInstanceCtrl.updatedItem.duration)}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-click="ModalInstanceCtrl.save()">Save changes</button>
+  <button class="btn btn-primary" ng-click="ModalInstanceCtrl.cancel()">CANCEL</button>
+</div>

@@ -1,0 +1,118 @@
+<div class="form-container-wide">
+  
+  <form action="" name="registerForm" class="form-horizontal" novalidate>
+    <fieldset>
+      <legend>
+        Register
+      </legend>
+      <div class="form-group">
+        <label for="name" class="col-sm-3 control-label">Display name</label>
+        <div class="col-sm-9">
+          <input type="name" 
+            placeholder="your display name" 
+            class="form-control" 
+            id="displayname"
+            name="displayname"
+            ng-model="user.displayname"
+            ng-minlength=3
+            ng-maxlength=20
+            required >      
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9 error" ng-show="registerForm.displayname.$dirty && registerForm.displayname.$invalid">
+          <small class="error" ng-show="registerForm.displayname.$error.required">
+            your display name is required
+          </small>
+          <small class="error" ng-show="registerForm.displayname.$error.minlength">
+            your name should be at least 3 characters   
+          </small>
+          <small class="error" ng-show="registerForm.displayname.$error.maxlength">
+            your name should be no more than 20 characters
+          </small>
+        </div>      
+      </div>
+      <div class="form-group">
+        <label for="email" class="col-sm-3 control-label">Email Addres</label>
+        <div class="col-sm-9">
+          <input type="email" 
+            placeholder="enter email" 
+            class="form-control" 
+            id="email" 
+            name="email"
+            ng-model="user.username" 
+            ng-minlength=3
+            required >       
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9 error" ng-show="registerForm.email.$dirty && registerForm.email.$invalid">
+          <small class="error" ng-show="registerForm.email.$error.required">
+            your email is required
+          </small>
+          <small class="error" ng-show="registerForm.email.$error.email">
+            not valid email address
+          </small>
+        </div>      
+      </div>
+      <div class="form-group">
+        <label for="pwd" class="col-sm-3 control-label">Password</label>
+        <div class="col-sm-9">      
+          <input type="password" 
+            placeholder="enter password" 
+            class="form-control" 
+            id="pwd" 
+            name="pwd"
+            ng-model="user.password" 
+            ng-minlength=6
+            ng-maxlength=10
+            required >
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9 error" ng-show="registerForm.pwd.$dirty && registerForm.pwd.$invalid">
+          <small class="error" ng-show="registerForm.pwd.$error.required">
+            your password is required
+          </small>
+          <small class="error" ng-show="registerForm.pwd.$error.minlength">
+            your password should be least 6 char
+          </small>
+          <small class="error" ng-show="registerForm.pwd.$error.maxlength">
+            your password should no more than 10 char
+          </small>
+        </div>      
+      </div>
+      <div class="form-group">
+        <label for="pwd_confirm" class="col-sm-3 control-label">Confirm Password</label>
+        <div class="col-sm-9">      
+          <input type="password" 
+            placeholder="enter password" 
+            class="form-control" 
+            id="pwd_confirm" 
+            name="pwd_confirm"
+            ng-model="user.pwd_confirm" 
+            required 
+            pwd-confirm="{{user.password}}">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9 error" ng-show="registerForm.pwd_confirm.$dirty && registerForm.pwd_confirm.$invalid">
+          <small class="error" ng-show="registerForm.pwd_confirm.$error.required">
+            please confirm password
+          </small>
+          <small class="error" ng-show="registerForm.pwd_confirm.$error.pwdConfirm">
+            your password is not match
+          </small>
+        </div>      
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+          <button type="button" class="btn btn-default" ng-disabled="registerForm.$invalid" ng-click="RegisterCtrl.register(user)">Submit</button>      
+        </div>
+      </div>
+      <div class="error">
+        {{RegisterCtrl.errorService.errorMessage}}
+      </div>
+    </fieldset>
+  </form>
+</div>

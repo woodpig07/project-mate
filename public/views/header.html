@@ -1,0 +1,22 @@
+<div ng-controller="MainCtrl as MainCtrl">
+      <ul class="nav nav-pills pull-right">
+        <li class="active"><a ng-href="#/Home">Home</a></li>
+        <li><a ng-href="#/about">About</a></li>
+        <li ng-hide="MainCtrl.currentUser"><a href="#/register">Register </a></li>
+        <li ng-hide="MainCtrl.currentUser"><a href="#/login">Login </a></li>
+        <li ng-if="MainCtrl.currentUser"><a href="#/home/project">Project </a></li>
+        <li ng-if="MainCtrl.currentUser"><a href="#/home/organization">Organization </a></li>
+        <li ng-if="MainCtrl.currentUser">
+          <div dropdown>              
+            <button class="btn-link dropdown-toggle" dropdown-toggle>
+              Welcome, {{MainCtrl.currentUser.displayname}} &nbsp<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="#/logout">Log out</a></li>
+              <li><a href="#/home/profile">Your profile</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+      <h3 class="text-muted">ProjectMaster</h3>
+</div>

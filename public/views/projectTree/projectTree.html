@@ -1,0 +1,67 @@
+
+<div class="ad-tree-browser-container"
+     ng-class="{'tree-bordered': attrs.bordered}">
+    <div data-level="0" class="tree-view">
+        <div class="tree">
+            <script type="text/ng-template" id="treeTemplate.html">
+                <div class="content row"
+                     ng-class="{{ attrs.rowNgClass }}">
+                    <div 
+                      ng-style="{'padding-left': level * (attrs.childrenPadding || 15) + 'px'}"
+                      class="col-md-3 row-header">
+                        <div class="toggle">
+                            <i ng-if="item._ad_expanded && hasChildren(item) && !item._ad_loading"
+                               ng-class="iconClasses.expand"
+                               ng-click="toggle($event,item)"></i>
+                            <i ng-if="!item._ad_expanded && hasChildren(item) && !item._ad_loading"
+                               ng-class="iconClasses.collapse"
+                               ng-click="toggle($event,item)"></i>
+                            <span ng-if="item._ad_loading">
+                                <i ng-class="iconClasses.loadingSpinner"></i>
+                            </span>
+                        </div>
+                        <div class="">
+                          <ng-include ng-if="attrs.nodeRowHeaderUrl" src="attrs.nodeRowHeaderUrl"></ng-include>
+                        </div>
+                    </div>
+                    <div class="node-content col-md-9">
+                      <ng-include ng-if="attrs.nodeTemplateUrl" src="attrs.nodeTemplateUrl"></ng-include>
+                      <span ng-if="!attrs.nodeTemplateUrl">{{ item.taskTame || "" }}</span>
+                    </div>
+
+                </div>
+                <div ng-hide="item._ad_expanded">
+                    <div class="tree-level tree-sub-level"
+                         onLoad="level=level+1;parent=$parent.item;"
+                         ng-class="{loading:item._ad_loading}"
+                         ng-repeat="item in item[attrs.childNode] | orderBy:'createDate'"
+                         ng-include="'treeTemplate.html'">
+                    </div>
+                </div>
+            </script>
+            <div>
+                <div class="tree-level tree-header-level border"
+                     ng-if="attrs.nodeHeaderUrl"
+                     ng-controller="ModalCtrl as ModalCtrl">
+                    <div class="content row">
+
+                            <div class="col-md-3"
+                              style="padding-left:30px;">
+                              NAME
+                            </div>
+                            <div class="node-content ad-user-select-none col-md-9"
+                                 ng-include="attrs.nodeHeaderUrl"></div>
+
+                    </div>
+                </div>
+                <div class="tree-level tree-top-level border"
+                    ng-controller="ModalCtrl as ModalCtrl"
+                     onload="level = 1;parent=treeRoot;"
+                     ng-repeat="item in treeRoot[attrs.childNode] | orderBy:'createDate'"
+                     ng-class="{loading:item._ad_loading}"
+                     ng-include="'treeTemplate.html'">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

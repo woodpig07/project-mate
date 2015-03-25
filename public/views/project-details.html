@@ -1,0 +1,67 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <dl class="dl-horizontal pm-dl">
+      <dt> Project Name:</dt>
+      <dd> {{ProjectDetailsCtrl.currentProject.projectName}} </dd>
+    </dl>
+    
+    <button class="btn btn-primary" ng-click="ProjectDetailsCtrl.refresh()">Refresh</button>
+  </div>
+  <div class="panel-body">
+    <dl class="dl-horizontal pm-dl">
+      <dt>Description:</dt>
+      <dd>{{ProjectDetailsCtrl.currentProject.description}}</dd>
+    </dl>
+<!--   </div>
+  <div class="well well-sm"> -->
+  <dl>
+    <dt> Editors</dt>
+    <dd>
+      <ul class="list-inline">
+        <li class="editor" ng-repeat="editor in ProjectDetailsCtrl.currentProject.editors ">
+          {{editor}} 
+          <button class="close" aria-label="Close" ng-click="ProjectDetailsCtrl.revokeEditor(editor,$index)">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </li>
+      </ul>
+      <form action="" class="form-inline">
+        <div class="form-group" 
+          ng-class="{'has-success':ProjectDetailsCtrl.hasSuccess,
+                      'has-error':ProjectDetailsCtrl.hasError,
+                      'has-feedback': ProjectDetailsCtrl.hasFeedback}"
+          style="max-width:400px;">
+            <div class="input-group">
+              
+              <span class="input-group-addon">Find member</span>
+              <input type="text" ng-model="newEditor" class="form-control"> 
+            </div> 
+            <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" ng-show="ProjectDetailsCtrl.hasError"></span>
+            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" ng-show="ProjectDetailsCtrl.hasSuccess"></span>
+        </div>
+        <button class="btn btn-default" ng-click="ProjectDetailsCtrl.assignEditor(newEditor)">Assign</button>          
+        
+      </form>
+      <small>{{ProjectDetailsCtrl.msg}} </small>
+      
+    </dd>
+  </dl>
+
+  </div>
+
+
+  <div class="projectTree" ng-controller="ProjectOperationCtrl">
+    <div class="loading" ng-show="ProjectDetailsCtrl.loading"></div>
+    <div class="ad-border-default" 
+          project-tree
+          tree-root="ProjectDetailsCtrl.projectTreeData"
+          child-node="subTasks"
+          children-padding="20"
+          bordered="true"
+          node-header-url="views/projectTree/treeHeader.html"
+          node-template-url="views/projectTree/treeNode.html"
+          node-row-header-url="views/projectTree/treeNodeRowHeader.html"
+          row-ng-class="">
+    </div>   
+  </div>
+</div>

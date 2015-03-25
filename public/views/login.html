@@ -1,0 +1,69 @@
+<div class="form-container">
+  <div alert-bar alertmessage="errorService.errorMessage"></div>
+  <!-- <div>{{errorService.errorMessage}}</div> -->
+  <form name="loginForm" class="form-horizontal" novalidate ng-submit="LoginCtrl.login(credentials)">
+    <fieldset>
+      <legend>Sign In</legend>
+      <div class="form-group">
+        <label for="email" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-10">
+          <input type="email" 
+            placeholder="enter email" 
+            class="form-control" 
+            id="email" 
+            name="email"
+            ng-model="credentials.username" 
+            required >      
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10 error" ng-show="loginForm.email.$dirty && loginForm.email.$invalid">
+          <small class="error" ng-show="loginForm.email.$error.required">
+            your email is required
+          </small>
+          <small class="error" ng-show="loginForm.email.$error.email">
+            not valid email address
+          </small>
+        </div>      
+      </div>
+      <div class="form-group">
+        <label for="pwd" class="col-sm-2 control-label">Password</label>
+        <div class="col-sm-10">      
+          <input type="password" 
+            placeholder="enter password" 
+            class="form-control" 
+            id="pwd" 
+            name="pwd"
+            ng-model="credentials.password" 
+            required >
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10 error" ng-show="loginForm.pwd.$dirty && loginForm.pwd.$invalid">
+          <small class="error" ng-show="loginForm.pwd.$error.required">
+            your password is required
+          </small>
+        </div>      
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <div class="checkbox">
+            <label for="chbx">
+              <input type="checkbox" id="chbx"> Stay sign in
+            </label>
+          </div>      
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-primary" ng-disabled="loginForm.$invalid">Submit</button>      
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
+
+<div class="section-container" style="margin-top:30px;">
+  <p class="text-danger" ng-show="LoginCtrl.error">{{LoginCtrl.error}} </p>
+  <p class="text-info bor">Do not have an account? Please take a moment to <a href="#/register">register</a> </p>
+</div>

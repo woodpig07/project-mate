@@ -1,0 +1,18 @@
+.divider {
+  height:1px;
+  backgournd-color:#e5e5e5;
+  width:100%;
+}
+.projectTree {
+
+}
+.icon-edit{
+  padding:0;
+  >span{
+    margin:0 5px
+  }
+}
+.loading{
+  background: url(../images/loading.gif) no-repeat center;
+  height: 50px;
+}

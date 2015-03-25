@@ -1,0 +1,110 @@
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4>Your account profile:</h4>
+    </div>
+    <div class="panel-body">
+      <div class="form-group row">
+        <label for="" class="col-sm-3 control-label">Your display name</label>
+        <div class="col-sm-9"  edit-to-save="{{ProfileCtrl.currentUser.displayname}}" saveto="ProfileCtrl.updateDisplayName()">                 </div>
+      </div>
+      <div class="form-group row">
+        <label for="" class="col-sm-3 control-label">Your email address</label>
+        <div class="col-sm-9">{{ProfileCtrl.currentUser.username}}</div>
+      </div>    
+    </div>
+  </div>
+    
+    <div class="divider"></div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4>Update your password:</h4>
+    </div>
+    <div class="panel-body">
+      
+    <form action="" name="updatePwdForm" class="form-horizontal" novalidate>
+      <div class="form-group row">
+        <label for="pwd" class="col-sm-3 control-label">Your current Password</label>
+        <div class="col-sm-5">      
+          <input type="password" 
+            placeholder="enter password" 
+            class="form-control" 
+            id="pwd" 
+            name="pwd"
+            ng-model="userpwd.currentPassword" 
+            ng-minlength=6
+            ng-maxlength=10
+            required >
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-offset-3 col-sm-9 error" ng-show="updatePwdForm.pwd.$dirty && updatePwdForm.pwd.$invalid">
+          <small class="error" ng-show="updatePwdForm.newpwd.$error.required">
+            please enter your current password
+          </small>
+        </div>      
+      </div>      
+      <div class="form-group row">
+        <label for="pwd" class="col-sm-3 control-label">New Password</label>
+        <div class="col-sm-5">      
+          <input type="password" 
+            placeholder="enter password" 
+            class="form-control" 
+            id="newpwd" 
+            name="newpwd"
+            ng-model="userpwd.newPassword" 
+            ng-minlength=6
+            ng-maxlength=10
+            required >
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-offset-3 col-sm-9 error" ng-show="updatePwdForm.newpwd.$dirty && updatePwdForm.newpwd.$invalid">
+          <small class="error" ng-show="updatePwdForm.newpwd.$error.required">
+            please enter new password
+          </small>
+          <small class="error" ng-show="updatePwdForm.newpwd.$error.minlength">
+            your password should be least 6 char
+          </small>
+          <small class="error" ng-show="updatePwdForm.newpwd.$error.maxlength">
+            your password should no more than 10 char
+          </small>
+        </div>      
+      </div>
+      <div class="form-group row">
+        <label for="pwd_confirm" class="col-sm-3 control-label">Confirm new Password</label>
+        <div class="col-sm-5">      
+          <input type="password" 
+            placeholder="enter password" 
+            class="form-control" 
+            id="pwd_confirm" 
+            name="pwd_confirm"
+            ng-model="userpwd.verifyPassword" 
+            required 
+            pwd-confirm="{{userpwd.newPassword}}">
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-offset-3 col-sm-9 error" ng-show="updatePwdForm.pwd_confirm.$dirty && updatePwdForm.pwd_confirm.$invalid">
+          <small class="error" ng-show="updatePwdForm.pwd_confirm.$error.required">
+            please confirm password
+          </small>
+          <small class="error" ng-show="updatePwdForm.pwd_confirm.$error.pwdConfirm">
+            your new password does not match
+          </small>
+        </div>      
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-offset-3 col-sm-9">
+          <button type="button" class="btn btn-default" ng-disabled="updatePwdForm.$invalid" ng-click="ProfileCtrl.updatePwd(userpwd, updatePwdForm)">Update</button>
+          <button type="button" class="btn btn-default" ng-disabled="updatePwdForm.$pristine" ng-click="ProfileCtrl.resetForm(updatePwdForm)">reset</button>                 
+        </div>
+      </div>
+    </form>
+    <div class="updatePwdMsg">
+      <div class="error" ng-show="ProfileCtrl.updatePwdRes.update_success">Update success</div>
+      <div class="error" ng-show="ProfileCtrl.updatePwdRes.update_error">wrong! {{ProfileCtrl.updatePwdRes.error}}</div>
+    </div>
+    </div>
+  </div>
