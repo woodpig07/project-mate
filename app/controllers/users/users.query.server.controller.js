@@ -43,24 +43,3 @@ exports.list = function(req, res) {
     });    
   }
 };
-
-// /**
-//  * query user by name middleware
-//  */
-// exports.queryUsername = function(req, res, next) {
-//   if (req.query.username) {
-//     User.findOne({'username':req.query.username},'id username organizations', function(err, user) {
-//       if (err) return next(err);
-//       if (!user) return next(new Error('No existing account for ' + req.query.username));
-//       req.queryResult = user;
-//     });    
-//   }
-//   next();
-// };
-
-// /**
-//  * return query result
-//  */
-// exports.query = function(req, res) {
-//   res.json(req.queryResult || null);
-// };
