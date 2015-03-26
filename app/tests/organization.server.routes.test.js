@@ -11,7 +11,7 @@ var should = require('should'),
 /**
  * Globals
  */
-var credentials, user, organization;
+var credentials, user, organization, anotherUser;
 
 /**
  * organization routes tests
@@ -32,13 +32,21 @@ describe('Organization CRUD tests', function() {
       provider: 'local'
     });
 
-    // Save a user to the test db and create new organization
+    anotherUser = new User({
+      displayName: 'another user',
+      username: 'anotherUser@test.com',
+      password: 'testtest',
+      provider: 'local'
+    });
+
+    // Save two users to the test db and create new organization
     user.save(function() {
       organization = {
         orgName: 'testOrg1'
       };
 
-      done();
+      // done();
+      anotherUser.save(done());
     });
   });
 
@@ -93,7 +101,9 @@ describe('Organization CRUD tests', function() {
 
   it('should not be able to save an organization if no organization name is provided', function(done) {
     // Invalidate title field
-    organization.orgName = '';
+    var anotherOrg = new Organization({
+      orgName: ''
+    });
 
     agent.post('/auth/signin')
       .send(credentials)
@@ -107,9 +117,10 @@ describe('Organization CRUD tests', function() {
 
         // Save a new organization
         agent.post('/api/organizations/')
-          .send(organization)
+          .send(anotherOrg)
           .expect(400)
           .end(function(organSaveErr, organSaveRes) {
+            console.log(organSaveRes.body);
             // Set message assertion
             (organSaveRes.body.message).should.match('organization name is required');
 
@@ -299,25 +310,157 @@ describe('Organization CRUD tests', function() {
     });
   });
 
-  it('should be able to add member to an organization if signedin user is org admin', function(done) {
 
+
+  it('should be able to add member to an organization if signedin user is org admin', function(done) {
+    agent.post('/auth/signin')
+      .send(credentials)
+      .expect(200)
+      .end(function(signinErr, signinRes) {
+        // Handle signin error
+        if (signinErr) done(signinErr);
+
+        // Save a new organization
+        agent.post('/api/organizations/')
+          .send(organization)
+          .expect(200)
+          .end(function(organSaveErr, organSaveRes) {
+            // Handle organization save error
+            if (organSaveErr) done(organSaveErr);
+
+            agent.put('/api/organizations/'+organSaveRes.body._id+'/addMember/'+'anotherUser@test.com')
+              .end(function(addMemberErr, addMemberRes) {
+                // Handle organization save error
+                if (addMemberErr) done(addMemberErr);
+
+                // Set assertions
+                (addMemberRes.body.organizations[0].orgId).should.equal(organSaveRes.body._id);
+                (addMemberRes.body.organizations[0].orgRole).should.match('member');
+
+                // Call the assertion callback
+                done();
+              });
+          });
+      });
   });
 
   it('should be able to remove member to an organization if signedin user is org admin', function(done) {
+    agent.post('/auth/signin')
+      .send(credentials)
+      .expect(200)
+      .end(function(signinErr, signinRes) {
+        // Handle signin error
+        if (signinErr) done(signinErr);
 
+        // Save a new organization
+        agent.post('/api/organizations/')
+          .send(organization)
+          .expect(200)
+          .end(function(organSaveErr, organSaveRes) {
+            // Handle organization save error
+            if (organSaveErr) done(organSaveErr);
+
+            agent.put('/api/organizations/'+organSaveRes.body._id+'/addMember/'+'anotherUser@test.com')
+              .end(function(addMemberErr, addMemberRes) {
+                // Handle organization save error
+                if (addMemberErr) done(addMemberErr);
+
+                agent.put('/api/organizations/'+organSaveRes.body._id+'/removeMember/'+'anotherUser@test.com')
+                  .end(function(removeMemberErr, removeMemberRes) {
+                    if (removeMemberErr) done(removeMemberErr)
+                    // Set assertions
+                    removeMemberRes.body.organizations.should.be.an.Array.with.lengthOf(0);
+
+                    // Call the assertion callback
+                    done();
+                  });
+              });
+          });
+      });
   });
 
   it('should be able to assign member as org admin if signedin user is org admin', function(done) {
+    agent.post('/auth/signin')
+      .send(credentials)
+      .expect(200)
+      .end(function(signinErr, signinRes) {
+        // Handle signin error
+        if (signinErr) done(signinErr);
 
+        // Save a new organization
+        agent.post('/api/organizations/')
+          .send(organization)
+          .expect(200)
+          .end(function(organSaveErr, organSaveRes) {
+            // Handle organization save error
+            if (organSaveErr) done(organSaveErr);
+
+            agent.put('/api/organizations/'+organSaveRes.body._id+'/addMember/'+'anotherUser@test.com')
+              .end(function(addMemberErr, addMemberRes) {
+                // Handle organization save error
+                if (addMemberErr) done(addMemberErr);
+
+                agent.put('/api/organizations/'+organSaveRes.body._id+'/assignAdmin/'+'anotherUser@test.com')
+                  .end(function(assignAdminErr, assignAdminRes) {
+                    if (assignAdminErr) done(assignAdminErr)
+
+                    (assignAdminRes.body.organizations[0].orgRole).should.macth('admin');
+                    // Call the assertion callback
+                    done();
+                  });
+
+              });
+          });
+      });
   });
 
   it('should be able to revoke admin user for an organization if signedin user is org admin', function(done) {
+    agent.post('/auth/signin')
+      .send(credentials)
+      .expect(200)
+      .end(function(signinErr, signinRes) {
+        // Handle signin error
+        if (signinErr) done(signinErr);
 
+        // Save a new organization
+        agent.post('/api/organizations/')
+          .send(organization)
+          .expect(200)
+          .end(function(organSaveErr, organSaveRes) {
+            // Handle organization save error
+            if (organSaveErr) done(organSaveErr);
+
+            agent.put('/api/organizations/'+organSaveRes.body._id+'/addMember/'+'anotherUser@test.com')
+              .end(function(addMemberErr, addMemberRes) {
+                // Handle organization save error
+                if (addMemberErr) done(addMemberErr);
+
+                agent.put('/api/organizations/'+organSaveRes.body._id+'/assignAdmin/'+'anotherUser@test.com')
+                  .end(function(assignAdminErr, assignAdminRes) {
+                    if (assignAdminErr) done(assignAdminErr)
+
+                    agent.put('/api/organizations/'+organSaveRes.body._id+'/revokeAdmin/'+'anotherUser@test.com')
+                      .end(function(revokeAdminErr, revokeAdminRes) {
+                        if (revokeAdminErr) done(revokeAdminErr)
+
+                        // Set assertions
+                        (revokeAdminRes.body.organizations[0].orgRole).should.macth('member');
+
+                        // Call the assertion callback
+                        done();
+                      });
+
+                  });
+
+              });
+          });
+      });
   });  
 
+  });
+
   afterEach(function(done) {
-    User.remove().exec(function() {
-      Organization.remove().exec(done);
-    });
+    User.remove({}, function(){
+      Organization.remove({}, done);
   });
 });

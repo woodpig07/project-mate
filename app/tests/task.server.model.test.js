@@ -13,7 +13,7 @@ var should = require('should'),
 /**
  * Globals
  */
-var user, task;
+var user, task, project, organization;
 
 /**
  * Unit tests
