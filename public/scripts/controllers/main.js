@@ -11,6 +11,7 @@
     var vm = this;
     vm.errorService = ErrorService;
     vm.currentUser = Session.user;
+    vm.navOpen = false;
 
     $scope.$on(AUTH_EVENTS.loginSuccess, function() {
       vm.currentUser = Session.user;

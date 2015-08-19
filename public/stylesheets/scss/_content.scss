@@ -1,0 +1,138 @@
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+
+  .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+  }
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0;
+
+  p + h4 {
+    margin-top: 28px;
+  }
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 960px;
+  }
+
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
+
+/* header menu */
+.header{
+  .nav {
+    .dropdown-toggle{
+      padding: 8px 15px;
+      position: relative;
+    }
+
+    .dropdown-menu{
+      top: 30px;
+      left: 5px;
+    }
+  }
+}
+
+/* login/register page */
+
+.form-container{
+  @include container-width(60%);
+}
+.form-container-wide{
+  @include container-width(80%);
+}
+fieldset{
+  border:1px solid #e5e5e5;
+  padding: 0 15px;
+  @include border-radius($default-border-radius);
+}
+
+legend {
+  width: auto;
+  padding: 0 10px;
+  border-bottom: none;
+}
+
+.section-container{
+  padding: 0 20px;
+}
+
+/* organizations */
+.current-org{
+  width: 70%;
+}
+.text-h4{
+  font-size: $font-size-h4;
+}
+
+/* project */
+.pm-well{
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #eee;
+  border-left-width: 5px;
+  border-radius: 3px;
+}
+.pm-well-info{
+  border-left-color: #d9edf7;
+}
+.pm-label-link{
+  cursor:pointer;
+}
+.pm-btn-margin{
+  margin:0 15px;
+}
+.pm-text-ellipsis{
+  width: 12em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-decoration: underline;
+}
+.pm-block-text{
+  padding:15px 20px;
+}
+.list-number{
+  padding-left:5px;
+  font-size: large;
+  font-style: oblique;
+}
+.pm-dl.dl-horizontal{
+  dt{
+    text-align: left;
+    width:120px;
+  }
+  dd{
+    margin-left: 50px;
+  }
+}
+.editor{
+  line-height: 22px;
+}

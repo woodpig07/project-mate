@@ -22,44 +22,40 @@ module.exports = function(grunt) {
 					livereload: true
 				}
 			},
-			serverJS: {
-				files: watchFiles.serverJS,
-				tasks: ['jshint'],
-				options: {
-					livereload: true
-				}
-			},
+			// serverJS: {
+			// 	files: watchFiles.serverJS,
+			// 	tasks: ['jshint'],
+			// 	options: {
+			// 		livereload: true
+			// 	}
+			// },
 			clientViews: {
 				files: watchFiles.clientViews,
 				options: {
 					livereload: true
 				}
 			},
-			clientJS: {
-				files: watchFiles.clientJS,
-				tasks: ['jshint'],
-				options: {
-					livereload: true
-				}
-			},
-			clientCSS: {
-				files: watchFiles.clientCSS,
-				tasks: ['csslint'],
-				options: {
-					livereload: true
-				}
-			},
-			compass: {
-				files: watchFiles.scss,
-				tasks: ['compass:server', 'autoprefixer'],
-				options: {
-					livereload: true
-				}
-			},
-			mochaTests: {
-				files: watchFiles.mochaTests,
-				tasks: ['test:server'],
-			}
+			// clientJS: {
+			// 	files: watchFiles.clientJS,
+			// 	tasks: ['jshint'],
+			// 	options: {
+			// 		livereload: true
+			// 	}
+			// },
+			// clientCSS: {
+			// 	files: watchFiles.clientCSS,
+			// 	tasks: ['csslint'],
+			// 	options: {
+			// 		livereload: true
+			// 	}
+			// },
+      clientSCSS: {
+        files: 'public/stylesheets/scss/*.scss',
+        tasks: ['sass'],
+        options: {
+          livereload: true
+        }
+      }
 		},
 		// jshint: {
 		// 	all: {
@@ -110,18 +106,16 @@ module.exports = function(grunt) {
 		},
 		
 		//compiles scss to css
-		compass: {
-			options: {
-				sassDir: 'public/stylesheets/scss',
-				cssDir: 'public/stylesheets/'
-			},
-			server: {
-				options: {
-					debugInfo: true
-				}
-			}
-		},
-
+    sass: {
+      dist: {
+      	options: {
+      		compass: true
+      	},
+        files: {
+          'public/stylesheets/main.css': 'public/stylesheets/scss/main.scss'
+        }
+      }
+    },
 		nodemon: {
 			dev: {
 				script: 'server.js',
@@ -153,7 +147,7 @@ module.exports = function(grunt) {
 		// 	}
 		// },
 		concurrent: {
-			default: ['nodemon', 'watch', 'compass:server'],
+			default: ['nodemon', 'watch', 'sass'],
 			debug: ['nodemon', 'watch', 'node-inspector'],
 			options: {
 				logConcurrentOutput: true,
@@ -199,6 +193,8 @@ module.exports = function(grunt) {
 
 	// Default task(s).
 	grunt.registerTask('default', ['concurrent:default']);
+
+	grunt.registerTask('watchFE', ['watch']);
 
 	// Debug task.
 	// grunt.registerTask('debug', ['lint', 'concurrent:debug']);

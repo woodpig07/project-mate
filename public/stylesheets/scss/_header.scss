@@ -1,0 +1,77 @@
+.header {
+  
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 10px 0;
+  }
+}
+.header-menu {
+  border-bottom: 1px solid #e5e5e5;
+
+  .nav {
+    float: right;
+  }
+}
+
+
+.nav-toggle {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-decoration: none;
+  text-indent: -300px;
+  position: relative;
+  overflow: hidden;
+  width: 60px;
+  height: 55px;
+  float: right;
+  display: none;
+  cursor: pointer;
+}
+
+.nav-toggle:before {
+  color: #242424; /* Edit this to change the icon color */
+  font: normal 28px/55px "responsivenav"; /* Edit font-size (28px) to change the icon size */
+  text-transform: none;
+  text-align: center;
+  position: absolute;
+  content: "\2261"; /* Hamburger icon */
+  text-indent: 0;
+  speak: none;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+.nav-toggle.active:before {
+  font-size: 24px;
+  content: "\78"; /* Close icon */
+}
+
+@media (max-width: $screen-xs-max) {
+  .header-menu {
+    position: relative;
+
+    .nav-toggle {
+      display: block;
+    }
+    .nav {
+      position: absolute;
+      float: none;
+      top: 47px;
+      width: 100%;
+      text-align: center;
+      background-color: white;
+      display: none;
+
+      > li {
+        float: none;
+        border: 1px solid #e5e5e5;
+      }
+
+      &.nav-open {
+        display: block;
+      }
+    }
+  }
+}
