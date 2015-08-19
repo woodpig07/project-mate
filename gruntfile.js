@@ -194,8 +194,6 @@ module.exports = function(grunt) {
 	// Default task(s).
 	grunt.registerTask('default', ['concurrent:default']);
 
-	grunt.registerTask('watchFE', ['watch']);
-
 	// Debug task.
 	// grunt.registerTask('debug', ['lint', 'concurrent:debug']);
 	grunt.registerTask('debug', ['concurrent:debug']);

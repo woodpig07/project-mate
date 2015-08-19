@@ -1,5 +1,7 @@
 <div ng-controller="MainCtrl as MainCtrl" class="header-menu">
-  <span class="nav-toggle" ng-click="MainCtrl.navOpen = !MainCtrl.navOpen;">Menu</span>
+  <span class="nav-toggle" ng-click="MainCtrl.navOpen = !MainCtrl.navOpen;" ng-class="{'active': MainCtrl.navOpen}">
+    <span></span>
+  </span>
   <ul class="nav nav-pills" ng-class="{'nav-open': MainCtrl.navOpen}">
     <li class="active"><a ng-href="#/Home">Home</a></li>
     <li><a ng-href="#/about">About</a></li>
