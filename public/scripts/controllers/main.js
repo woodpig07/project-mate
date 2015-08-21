@@ -26,6 +26,9 @@
       vm.currentUser = null;
       vm.currentUsername = null;
     });
+    $scope.$on('$routeChangeStart', function(next, current) {
+      vm.navOpen = false;
+    });
   }
 })();
 

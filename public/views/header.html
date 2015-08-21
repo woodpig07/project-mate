@@ -9,7 +9,7 @@
     <li ng-hide="MainCtrl.currentUser"><a href="#/login">Login </a></li>
     <li ng-if="MainCtrl.currentUser"><a href="#/home/project">Project </a></li>
     <li ng-if="MainCtrl.currentUser"><a href="#/home/organization">Organization </a></li>
-    <li ng-if="MainCtrl.currentUser">
+    <li ng-if="MainCtrl.currentUser" class="hidden-xs">
       <div dropdown>              
         <button class="btn-link dropdown-toggle" dropdown-toggle>
           Welcome, {{MainCtrl.currentUser.displayname}} &nbsp<span class="caret"></span>
@@ -19,6 +19,12 @@
           <li><a href="#/home/profile">Your profile</a></li>
         </ul>
       </div>
+    </li>
+    <li ng-if="MainCtrl.currentUser" class="visible-xs-block">
+      <a href="#/logout">Log out</a>
+    </li>
+    <li ng-if="MainCtrl.currentUser" class="visible-xs-block">
+      <a href="#/home/profile">Your profile </a>
     </li>
   </ul>
   <h3 class="text-muted">ProjectMaster</h3>

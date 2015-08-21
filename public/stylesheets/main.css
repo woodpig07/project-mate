@@ -5392,10 +5392,22 @@ button.close {
   .header-menu .nav {
     float: right; }
 
+.header {
+  margin-bottom: 30px; }
+  .header .nav .dropdown-toggle {
+    padding: 8px 15px;
+    position: relative; }
+  .header .nav .dropdown-menu {
+    top: 30px;
+    left: 5px; }
+
 .nav-toggle {
   float: right;
   display: none;
-  cursor: pointer; }
+  cursor: pointer;
+  position: relative;
+  width: 35px;
+  height: 35px; }
   .nav-toggle span, .nav-toggle span:before, .nav-toggle span:after {
     position: absolute;
     cursor: pointer;
@@ -5424,7 +5436,8 @@ button.close {
 
 @media (max-width: 767px) {
   .header-menu {
-    position: relative; }
+    position: relative;
+    z-index: 10; }
     .header-menu .nav-toggle {
       display: block; }
     .header-menu .nav {
@@ -5443,7 +5456,7 @@ button.close {
         border: 1px solid #e5e5e5; }
       .header-menu .nav.nav-open {
         display: block;
-        max-height: 200px; } }
+        max-height: 1000px; } }
 /* Custom page footer */
 .footer {
   margin-top: 15px;
@@ -5469,7 +5482,7 @@ button.close {
     margin-top: 28px; }
 
 /* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   .container {
     max-width: 960px; }
 
@@ -5480,21 +5493,9 @@ button.close {
     padding-left: 0;
     padding-right: 0; }
 
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px; }
-
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
     border-bottom: 0; } }
-/* header menu */
-.header .nav .dropdown-toggle {
-  padding: 8px 15px;
-  position: relative; }
-.header .nav .dropdown-menu {
-  top: 30px;
-  left: 5px; }
-
 /* login/register page */
 .form-container {
   width: 60%;
@@ -5504,6 +5505,9 @@ button.close {
   width: 80%;
   margin: 0 auto; }
 
+@media (max-width: 991px) {
+  .form-container, .form-container-wide {
+    width: 100%; } }
 fieldset {
   border: 1px solid #e5e5e5;
   padding: 0 15px;
@@ -5525,6 +5529,9 @@ legend {
 
 .text-h4 {
   font-size: 18px; }
+
+.new-org button {
+  margin-right: 20px; }
 
 /* project */
 .pm-well {

@@ -13,9 +13,7 @@
         templateUrl: 'views/main.html',
       })
       .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'AboutCtrl'
+        templateUrl: 'views/about.html'
       })
       .when('/login', {
         templateUrl: 'views/login.html',

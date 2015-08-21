@@ -50,30 +50,28 @@
 
 <div class="new-org"  ng-controller="AddOrganizationCtrl as AddOrganizationCtrl">
   <h4>Create a new Organization</h4>
-    <div class="form-group">      
-      <div class="input-group col-md-8">
-        <div class="input-group-addon" style="width:20%">Organization Name</div>
-        <input type="text" class="form-control" ng-model="newOrg.orgName">
-      </div> 
+    <div class="form-group"> 
+      <label for="orgName">Organization Name</label>     
+
+      <input type="text" class="form-control" ng-model="newOrg.orgName" id="orgName">
+
     </div>
     <div class="form-group">
-      <div class="input-group col-md-8">
-        <div class="input-group-addon" style="width:20%">Description</div>
-        <textarea type="text" row="3" class="form-control" ng-model="newOrg.description">
-        </textarea>
-      </div>      
+      <label for="orgDescription">Description</label>
+
+      <textarea type="text" rows="8" class="form-control" ng-model="newOrg.description" id="orgDescription">
+      </textarea>
+    
     </div>
     <div class="form-group">
-      <div class="input-group col-md-offset-4 col-md-4">
-        <button href="" class="btn btn-primary pm-btn-margin" 
+        <button class="btn btn-primary" 
           ng-click="AddOrganizationCtrl.addNewOrg(newOrg)">
           ADD
         </button>
-        <button href="" class="btn btn-default pm-btn-margin" 
+        <button class="btn btn-default" 
           ng-click="AddOrganizationCtrl.resetSelectedOrg(org.orgId);AddOrganizationCtrl.selected=false;">
           CANCEL
         </button>                 
-      </div>
     </div>
 </div>
 

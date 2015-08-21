@@ -23,7 +23,7 @@
 }
 
 /* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
+@media (min-width: $screen-sm-min) {
   .container {
     max-width: 960px;
   }
@@ -35,30 +35,13 @@
     padding-left: 0;
     padding-right: 0;
   }
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
+
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
     border-bottom: 0;
   }
 }
 
-/* header menu */
-.header{
-  .nav {
-    .dropdown-toggle{
-      padding: 8px 15px;
-      position: relative;
-    }
-
-    .dropdown-menu{
-      top: 30px;
-      left: 5px;
-    }
-  }
-}
 
 /* login/register page */
 
@@ -68,6 +51,12 @@
 .form-container-wide{
   @include container-width(80%);
 }
+@media (max-width: $screen-sm-max) {
+  .form-container, .form-container-wide {
+    width: 100%;
+  }
+}
+
 fieldset{
   border:1px solid #e5e5e5;
   padding: 0 15px;
@@ -90,6 +79,11 @@ legend {
 }
 .text-h4{
   font-size: $font-size-h4;
+}
+.new-org {
+  button {
+    margin-right: 20px;
+  }
 }
 
 /* project */

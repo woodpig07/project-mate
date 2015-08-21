@@ -13,12 +13,28 @@
     float: right;
   }
 }
+.header{
+  margin-bottom: 30px;
+  .nav {
+    .dropdown-toggle{
+      padding: 8px 15px;
+      position: relative;
+    }
 
+    .dropdown-menu{
+      top: 30px;
+      left: 5px;
+    }
+  }
+}
 
 .nav-toggle {
   float: right;
   display: none;
   cursor: pointer;
+  position: relative;
+  width: 35px;
+  height: 35px;
 
   span, span:before, span:after {
     position: absolute;
@@ -62,6 +78,7 @@
 @media (max-width: $screen-xs-max) {
   .header-menu {
     position: relative;
+    z-index: 10;
 
     .nav-toggle {
       display: block;
@@ -85,7 +102,7 @@
 
       &.nav-open {
         display: block;
-        max-height: 200px; 
+        max-height: 1000px; 
       }
     }
   }
