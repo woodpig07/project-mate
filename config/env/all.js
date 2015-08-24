@@ -53,7 +53,8 @@ module.exports = {
     		'public/vendor/angular-route/angular-route.js',
     		'public/vendor/angular-sanitize/angular-sanitize.js',
     		'public/vendor/angular-touch/angular-touch.js',
-				'public/vendor/ui-bootstrap-tpls-0.12.0.js'
+				'public/vendor/ui-bootstrap-tpls-0.12.0.js',
+				'public/vendor/ng-notifications-bar/src/ngNotificationsBar.js'
 			]
 		},
 		css: [

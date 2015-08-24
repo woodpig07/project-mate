@@ -5,6 +5,7 @@
     .config(routeConfig)
     .config(httpConfig)
     .config(debugConfig)
+    .config(notifyConfig)
     .run(run);
 
   function routeConfig($routeProvider) {
@@ -68,6 +69,11 @@
 
   function debugConfig($logProvider) {
     $logProvider.debugEnabled(true);
+  }
+
+  function notifyConfig(notificationsConfigProvider) {
+    notificationsConfigProvider.setAutoHide(true);
+    notificationsConfigProvider.setHideDelay(3000);
   }
 
   function run($rootScope, $location, AuthService){

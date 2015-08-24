@@ -5,9 +5,9 @@
     .module('projectMateApp')
     .controller('ProjectOperationCtrl',ProjectOperationCtrl);
 
-  ProjectOperationCtrl.$inject = ['$log','ProjectService', 'TaskService'];
+  ProjectOperationCtrl.$inject = ['$log','ProjectService', 'TaskService', 'notifications'];
 
-  function ProjectOperationCtrl($log,ProjectService, TaskService) {  
+  function ProjectOperationCtrl($log,ProjectService, TaskService, notifications) {  
     var vm = this;
 
     vm.projectTreeData = {
@@ -71,7 +71,8 @@
             description:res.data.description,
             duration:res.data.duration,
             subTasks:[],
-            createDate:res.data.created
+            createDate:res.data.created,
+            parentProject:res.data.parentProject
           };
           node.subTasks.push(newTask);
           
@@ -98,7 +99,7 @@
             duration:res.data.duration,
             subTasks:[],
             createDate:res.data.created,
-            parentTask:res.data.parentTask
+            parentProject:res.data.parentProject
           };
           if (node.subTasks && angular.isArray(node.subTasks)) {
           node.subTasks.push(newTask);
@@ -111,6 +112,7 @@
         function(error){
           $log.debug('ProjectOperationCtrl -> add() ->not root-> TaskService.addTask() :: ERROR');
           $log.debug(error);
+          notifications.showError({message: "something wrong when adding this task" + error.data.message});
         });
         
       }

@@ -33,7 +33,7 @@
     };
     // when click on organization name tag
     vm.handleClick = function(orgId, idx) {
-      console.log(vm.selectedOrgIdx);
+      
       if (vm.selectedOrgIdx === idx) {
         vm.selectedOrgIdx = null;
         vm.isCollapsed = !vm.isCollapsed ;

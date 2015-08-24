@@ -2,6 +2,8 @@ $icon-font-path: "../../vendor/bootstrap-sass-official/assets/fonts/bootstrap/";
 @import "../../vendor/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 @import "compass/support";
 @import "compass/css3/border-radius";
+@import "../../vendor/ng-notifications-bar/css/ngNotificationsBar.css";
+@import "../../vendor/hmps-animate-scss/animate.scss";
 @import "_helper";
 @import "_mixin";
 @import "_header";

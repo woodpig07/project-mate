@@ -15,6 +15,12 @@ var mongoose = require('mongoose'),
 exports.create = function(req, res) {
   var organization = req.organization;
   var project = new Project(req.body);
+
+  if (_.isArray(project.editors)){
+    project.editors = _.union(project.editors, organization.admin);
+  } else {
+    project.editors = [].concat(organization.admin);
+  }
   project.editors.concat(organization.admin);
   project.parentOrg = organization.id;
   

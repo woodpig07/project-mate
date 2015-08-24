@@ -8,7 +8,8 @@
       'ngRoute',
       'ngSanitize',
       'ngTouch',
-      'ui.bootstrap'
+      'ui.bootstrap',
+      'ngNotificationsBar'
       // 'ngMockE2E' 
     ]);
 })();

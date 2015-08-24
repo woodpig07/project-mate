@@ -24,6 +24,6 @@ module.exports = function(app) {
     .delete(users.requiresLogin, projects.hasAuthorization, projects.delete);
 
   // Finish by binding the article middleware
-  app.param('projectId', projects.projectByID);
   app.param('organizationId', organizations.organizationByID);
+  app.param('projectId', projects.projectByID);
 };
