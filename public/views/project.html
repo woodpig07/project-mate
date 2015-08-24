@@ -1,49 +1,46 @@
-<div ng-controller="AddProjectCtrl as AddProjectCtrl">
+<div ng-controller="AddProjectCtrl as AddProjectCtrl" class="pm-new-project">
   <div class="pm-well pm-well-info">
     <h4>Create new Project </h4>
-    <p>
+    <p ng-hide="AddProjectCtrl.organizations">
+      You need to be part of organization to create new project, either join in any existing organization or create <a href="#/home/organization">your own</a>.
+    </p>
+    <p ng-show="AddProjectCtrl.organizations">
       Every project need to be created under one eixsting organization, please click any one of these organization name tags below to start
     </p> 
     <span ng-repeat="org in AddProjectCtrl.organizations">
       
-      <span class="label label-default pm-label-link" role="button" ng-click="AddProjectCtrl.setSelectedOrg(org.orgId);AddProjectCtrl.selected=!AddProjectCtrl.selected;" ng-class="  {'label-primary':AddProjectCtrl.selected}">{{org.orgName}}</span>
+      <span class="label label-default pm-label-link" role="button" ng-click="AddProjectCtrl.handleClick(org.orgId, $index)" ng-class="{'label-primary': $index === AddProjectCtrl.selectedIdx}">{{org.orgName}}</span>
     </span>
     
   </div>
-  <div collapse="AddProjectCtrl.isCollapsed" class="" style="padding-left:20px;">
+  <div collapse="AddProjectCtrl.isCollapsed" class="pm-new-project-create">
     <div class="form-group">      
-      <div class="input-group col-md-8">
-        <div class="input-group-addon" style="width:20%">Project Name</div>
-        <input type="text" class="form-control" ng-model="newProject.projectName">
-      </div> 
+        <label for="newProjectName">Project Name</label>
+        <input type="text" class="form-control" id="newProjectName" ng-model="newProject.projectName">
     </div>
     <div class="form-group">
-      <div class="input-group col-md-8">
-        <div class="input-group-addon" style="width:20%">Description</div>
-        <textarea type="text" row="3" class="form-control" ng-model="newProject.description">
-        </textarea>
-      </div>      
+        <label for="newProjectDes">Description</label>
+        <textarea type="text" row="3" class="form-control" id="newProjectDes" ng-model="newProject.description">
+        </textarea>     
     </div>
     <div class="form-group">
-      <div class="input-group col-md-offset-4 col-md-4">
-        <button href="" class="btn btn-primary pm-btn-margin" 
+        <button href="" class="btn btn-primary" 
           ng-click="AddProjectCtrl.addNewProject(newProject)">
           ADD
         </button>
-        <button href="" class="btn btn-default pm-btn-margin" 
-          ng-click="AddProjectCtrl.resetSelectedOrg(org.orgId);AddProjectCtrl.selected=false;">
+        <button href="" class="btn btn-default" 
+          ng-click="AddProjectCtrl.resetSelectedOrg(org.orgId)">
           CANCEL
         </button>                 
-      </div>
     </div>
   </div>
   <div class="bg-success pm-block-text" ng-show="AddProjectCtrl.success">
     <span class="glyphicon glyphicon-ok"></span> 
     Project 
     <div class="pm-text-ellipsis">
-    <a ng-href="#/home/project/{{AddProjectCtrl.currentProject.projectId}}" class="text-success">{{AddProjectCtrl.currentProject.projectName}}</a>  
+    <a ng-href="#/home/project/{{AddProjectCtrl.addedProject.id}}" class="text-success">[{{AddProjectCtrl.addedProject.name}}]</a>  
     </div>
-    has been successfully created, now go to the <a ng-href="#/home/project/{{AddProjectCtrl.currentProject.projectId}}" class="text-info"><u>detail page</u></a> to add tasks.      
+    has been successfully created, now go to the <a ng-href="#/home/project/{{AddProjectCtrl.addedProject.id}}" class="text-info"><u>detail page</u></a> to add tasks.      
   </div>
   <div class="bg-warning pm-block-text" ng-show="AddProjectCtrl.fail">
     <span class="glyphicon glyphicon-warning-sign"></span> {{AddProjectCtrl.fail}}
@@ -51,28 +48,39 @@
 
 </div>
 
-<div class="" ng-controller="ShowProjectCtrl as ShowProjectCtrl">
+<div class="pm-show-project" ng-controller="ShowProjectCtrl as ShowProjectCtrl">
   <div class="pm-well pm-well-info">
     <h4>Show projects list </h4>
     <p>Click on any one of organization name tags below to show</p>
     <span ng-repeat="org in ShowProjectCtrl.organizations">
       
-      <span class="label label-default pm-label-link" role="button" ng-click="ShowProjectCtrl.loadProjects(org.orgId);ShowProjectCtrl.selected=!ShowProjectCtrl.selected;" ng-class="{'label-primary':ShowProjectCtrl.selected}">{{org.orgName}}</span>
+      <span class="label label-default pm-label-link"
+        role="button"
+        ng-click="ShowProjectCtrl.handleClick(org.orgId, $index)"
+        ng-class="{'label-primary':$index === ShowProjectCtrl.selectedOrgIdx}">
+        {{org.orgName}}
+      </span>
     </span>
      
   </div>
-  <div class="" ng-repeat="p in ShowProjectCtrl.projects">
-  <div class="list-number">
-    <span class="glyphicon-list glyphicon"></span> {{$index+1}}
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      {{p.projectName}}
+  <div class="pm-show-project-list" collapse="ShowProjectCtrl.isCollapsed">
+    <div class="alert alert-warning" ng-show="!ShowProjectCtrl.projects || ShowProjectCtrl.projects.length === 0">
+      This organization does not have any project yet.
     </div>
-    <div class="panel-body">
-      <p> {{p.description}} </p>  
-      <p class="text-right"><a ng-href="#/home/project/{{p._id}}" class="btn btn-default btn-small">See details</a></p>
+    <div class="" ng-repeat="p in ShowProjectCtrl.projects">
+      
+      <div class="list-number">
+        <span class="glyphicon-list glyphicon"></span> {{$index+1}}
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          {{p.projectName}}
+        </div>
+        <div class="panel-body">
+          <p> {{p.description}} </p>  
+          <p class="text-right"><a ng-href="#/home/project/{{p._id}}" class="btn btn-default btn-small">See details</a></p>
+        </div>
+      </div>
     </div>
-  </div>
   </div>
 </div>

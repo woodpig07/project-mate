@@ -23,6 +23,11 @@
           });
     };
 
+    vm.resetForm = function(newOrg) {
+      newOrg.orgName = "";
+      newOrg.description = "";
+    };
+
   }
 
 })();

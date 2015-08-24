@@ -77,6 +77,31 @@ legend {
 .current-org{
   width: 70%;
 }
+
+@media (max-width: $screen-sm-max) {
+  .current-org {
+    width: 100%;
+
+  }
+}
+.pm-new-project-create {
+  padding: 0 15px;
+  width: 80%;
+  button {
+    margin-right: 20px;
+  }
+}
+.pm-new-project, .pm-show-project {
+  .pm-label-link {
+    margin-right: 15px;
+  }
+}
+@media (max-width: $screen-sm-max) {
+  .pm-new-project-create {
+    width: 100%;
+  }
+}
+
 .text-h4{
   font-size: $font-size-h4;
 }

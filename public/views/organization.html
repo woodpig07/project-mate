@@ -48,6 +48,10 @@
   </div>
 </div>
 
+<div class="alert alert-info" ng-hide="OrganizationCtrl.organizations.length">
+  It appears currently you are not in any organization. You can ask organization admin to add your account to any existing organization, or you can create your own organization.
+</div>
+
 <div class="new-org"  ng-controller="AddOrganizationCtrl as AddOrganizationCtrl">
   <h4>Create a new Organization</h4>
     <div class="form-group"> 
@@ -69,7 +73,7 @@
           ADD
         </button>
         <button class="btn btn-default" 
-          ng-click="AddOrganizationCtrl.resetSelectedOrg(org.orgId);AddOrganizationCtrl.selected=false;">
+          ng-click="AddOrganizationCtrl.resetForm(newOrg)">
           CANCEL
         </button>                 
     </div>

@@ -5527,6 +5527,21 @@ legend {
 .current-org {
   width: 70%; }
 
+@media (max-width: 991px) {
+  .current-org {
+    width: 100%; } }
+.pm-new-project-create {
+  padding: 0 15px;
+  width: 80%; }
+  .pm-new-project-create button {
+    margin-right: 20px; }
+
+.pm-new-project .pm-label-link, .pm-show-project .pm-label-link {
+  margin-right: 15px; }
+
+@media (max-width: 991px) {
+  .pm-new-project-create {
+    width: 100%; } }
 .text-h4 {
   font-size: 18px; }
 
