@@ -72,3 +72,23 @@
         border-bottom: none;
     }
 }
+
+@media (min-width: $screen-sm-min) {
+  .node-content-row {
+    padding-left: 0 !important;
+  }
+}
+@media (max-width: $screen-sm-max) {
+  .tree-header-btn .btn {
+    font-weight: 600;
+  }
+  .node-content-row {
+    > div {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+    .node-edit-btn .btn{
+      font-weight: 600;
+    }
+  }
+}

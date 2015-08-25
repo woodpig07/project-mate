@@ -9,7 +9,7 @@
   function ProjectDetailsCtrl($routeParams,ProjectService,loadTask,User,$log) {
 		var vm = this;
 		// vm.orgId = OrganizationPointer.orgId;
-		vm.loading=true;
+		vm.loading = false;
 		vm.projectId = $routeParams.projectId;
 		vm.projectTreeData = {
 			projectId: null,

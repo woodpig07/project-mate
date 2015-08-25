@@ -152,6 +152,16 @@ legend {
     margin-left: 50px;
   }
 }
+@media (max-width: $screen-sm-max) {
+.pm-dl.dl-horizontal{
+  dt{
+    width:auto;
+  }
+  dd{
+    margin-left: 0;
+  }
+}
 .editor{
   line-height: 22px;
+}
 }

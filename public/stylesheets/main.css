@@ -5590,9 +5590,14 @@ legend {
 .pm-dl.dl-horizontal dd {
   margin-left: 50px; }
 
-.editor {
-  line-height: 22px; }
+@media (max-width: 991px) {
+  .pm-dl.dl-horizontal dt {
+    width: auto; }
+  .pm-dl.dl-horizontal dd {
+    margin-left: 0; }
 
+  .editor {
+    line-height: 22px; } }
 input.ng-invalid {
   border: 1px solid red; }
 
@@ -5656,6 +5661,18 @@ input.ng-invalid.ng-pristine {
   .ad-tree-browser-container.tree-bordered .tree-sub-level:last-child {
     border-bottom: none; }
 
+@media (min-width: 768px) {
+  .node-content-row {
+    padding-left: 0 !important; } }
+@media (max-width: 991px) {
+  .tree-header-btn .btn {
+    font-weight: 600; }
+
+  .node-content-row > div {
+    padding-top: 10px;
+    padding-bottom: 10px; }
+  .node-content-row .node-edit-btn .btn {
+    font-weight: 600; } }
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;

@@ -1,4 +1,3 @@
-
 <div class="ad-tree-browser-container"
      ng-class="{'tree-bordered': attrs.bordered}">
     <div data-level="0" class="tree-view">
@@ -8,7 +7,7 @@
                      ng-class="{{ attrs.rowNgClass }}">
                     <div 
                       ng-style="{'padding-left': level * (attrs.childrenPadding || 15) + 'px'}"
-                      class="col-md-3 row-header">
+                      class="col-md-3 col-sm-12 col-xs-12 row-header">
                         <div class="toggle">
                             <i ng-if="item._ad_expanded && hasChildren(item) && !item._ad_loading"
                                ng-class="iconClasses.expand"
@@ -24,9 +23,11 @@
                           <ng-include ng-if="attrs.nodeRowHeaderUrl" src="attrs.nodeRowHeaderUrl"></ng-include>
                         </div>
                     </div>
-                    <div class="node-content col-md-9">
+
+                    <div class="node-content col-md-9 col-sm-12 col-xs-12">
                       <ng-include ng-if="attrs.nodeTemplateUrl" src="attrs.nodeTemplateUrl"></ng-include>
                       <span ng-if="!attrs.nodeTemplateUrl">{{ item.taskTame || "" }}</span>
+                            
                     </div>
 
                 </div>
@@ -44,12 +45,17 @@
                      ng-if="attrs.nodeHeaderUrl"
                      ng-controller="ModalCtrl as ModalCtrl">
                     <div class="content row">
-
-                            <div class="col-md-3"
+                            <!-- desktop row header -->
+                            <div class="col-md-3 hidden-sm hidden-xs"
                               style="padding-left:30px;">
                               NAME
                             </div>
-                            <div class="node-content ad-user-select-none col-md-9"
+                            <!-- mobile row header -->
+                            <div class="col-sm-3 col-xs-3 hidden-md hidden-lg"
+                              style="padding-left:30px;">
+                              TASKS
+                            </div>
+                            <div class="node-content ad-user-select-none col-md-9 col-sm-9 col-xs-9"
                                  ng-include="attrs.nodeHeaderUrl"></div>
 
                     </div>

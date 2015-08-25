@@ -31,10 +31,14 @@
                       $log.debug('ProjectOperationCtrl -> remove() -> TaskService.remove()');
                       $log.debug(res);
                       p.subTasks.splice(idx,1);
+                      notifications.showSuccess({message: 'Your task removed successfully'});
+
                     },
                     function(error){
                       $log.debug('ProjectOperationCtrl -> remove() -> TaskService.remove() :: ERROR');
                       $log.debug(error);
+                      notifications.showError({message: "something wrong when removing this task: " + error.data.message});
+
                     });
       } else {
         //root level
@@ -46,10 +50,13 @@
                         $log.debug('ProjectOperationCtrl -> remove() -> TaskService.remove()');
                         $log.debug(res);
                         p.subTasks.splice(idx,1);
+                        notifications.showSuccess({message: 'Your task removed successfully'});
+
                       },
                       function(error){
                         $log.debug('ProjectOperationCtrl -> remove() -> TaskService.remove() :: ERROR');
                         $log.debug(error);
+                        notifications.showError({message: "something wrong when removing this task" + error.data.message});
                       });
         
       }
@@ -75,11 +82,12 @@
             parentProject:res.data.parentProject
           };
           node.subTasks.push(newTask);
-          
+          notifications.showSuccess({message: 'Your task posted successfully'});
         },
         function(error){
           $log.debug('ProjectOperationCtrl -> add() ->root-> TaskService.addTask() :: ERROR');
           $log.debug(error);
+          notifications.showError({message: "something wrong when adding this task" + error.data.message});          
         });        
       } else {
         //add non-first-level task
@@ -107,7 +115,7 @@
             node.subTasks = [];
             node.subTasks.push(newTask);
           }
-          
+          notifications.showSuccess({message: 'Your task posted successfully'});
         },
         function(error){
           $log.debug('ProjectOperationCtrl -> add() ->not root-> TaskService.addTask() :: ERROR');
@@ -130,9 +138,12 @@
                     $log.debug('ProjectOperationCtrl -> update() ->root-> TaskService.update()');
                     $log.debug('task update'+res);
                     node._ad_loading = false;
+                    notifications.showSuccess({message: 'Your task updated successfully'});
+
                   },function(error){
                     $log.debug('ProjectOperationCtrl -> update() ->root-> TaskService.update() :: ERROR');
                     $log.debug(error);
+                    notifications.showError({message: "something wrong when updating this task" + error.data.message});
                   });
     };    
   }

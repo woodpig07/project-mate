@@ -1,10 +1,27 @@
-<div class="row">
-  <div class="col-md-6">{{item.description}}</div>
-  <div class="col-md-2">{{item.startDate | date:'yyyy-MM-dd'}}</div>
-  <div class="col-md-2">{{item.duration}}</div>
-  <div class="col-md-2 icon-edit">
-    <span class="glyphicon glyphicon-plus" ng-click="ModalCtrl.open(item)"></span>
-    <span class="glyphicon glyphicon-minus" ng-click="ModalCtrl.remove(parent,$index)"></span>
-    <span class="glyphicon glyphicon-pencil" ng-click="ModalCtrl.edit(item)"></span>
+<div class="row node-content-row" ng-style="{'padding-left': level * (attrs.childrenPadding || 15) + 'px'}">
+  <div class="col-md-6 col-sm-12">
+    {{item.description}}
+  </div>
+  <div class="col-md-2 col-sm-12">
+    <div class="visible-sm-inline visible-xs-inline">Start Date: </div>
+    {{item.startDate | date:'yyyy-MM-dd'}}
+  </div>
+  <div class="col-md-2 col-sm-12">
+    <div class="visible-sm-inline visible-xs-inline">Duration: </div>
+    {{item.duration}}
+  </div>
+  <div class="col-md-2  col-sm-12">
+    <!-- desktop node actions -->
+    <div class="hidden-sm hidden-xs node-edit-icon icon-edit">
+      <span class="glyphicon glyphicon-plus" ng-click="ModalCtrl.open(item)"></span>
+      <span class="glyphicon glyphicon-minus" ng-click="ModalCtrl.remove(parent,$index)"></span>
+      <span class="glyphicon glyphicon-pencil" ng-click="ModalCtrl.edit(item)"></span>
+    </div>
+    <!-- mobile node actions -->
+    <div class="visible-sm-block visible-xs-block node-edit-btn">
+      <button class="btn btn-default" ng-click="ModalCtrl.open(item)">Add Subtask</button>
+      <button class="btn btn-default" ng-click="ModalCtrl.remove(parent,$index)">Remove task</button>
+      <button class="btn btn-default" ng-click="ModalCtrl.edit(item)">Edit task</button>
+    </div>
   </div>
 </div>
