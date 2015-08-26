@@ -1,7 +1,7 @@
 <div class="modal-header">
   <h4 class="modal-title">EDIT</h4>
 </div>
-<div class="modal-body">
+<div class="modal-body"  stop-event="touchend">
   <label for="">Task name</label>
   <input type="text" class="form-control" ng-model="ModalInstanceCtrl.updatedItem.taskName" ng-value="ModalInstanceCtrl.updatedItem.taskName" ng-init="ModalInstanceCtrl.updatedItem.taskName=ModalInstanceCtrl.item.taskName">
   <label for="">description</label>
@@ -12,7 +12,7 @@
         <label>Start date</label>
           <div class="input-group">
                       
-          <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="ModalInstanceCtrl.updatedItem.startDate" is-open="opened" ng-required="true" close-text="Close" datepicker-options="ModalInstanceCtrl.dateOptions" ng-init="ModalInstanceCtrl.updatedItem.startDate=ModalInstanceCtrl.item.startDate" >
+          <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="ModalInstanceCtrl.updatedItem.startDate" is-open="ModalInstanceCtrl.opened" ng-required="true" close-text="Close" datepicker-options="ModalInstanceCtrl.dateOptions" ng-init="ModalInstanceCtrl.updatedItem.startDate=ModalInstanceCtrl.item.startDate" >
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="ModalInstanceCtrl.openDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>

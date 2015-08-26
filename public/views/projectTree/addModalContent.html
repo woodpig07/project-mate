@@ -1,7 +1,7 @@
 <div class="modal-header">
   <h4 class="modal-title">Add an new task</h4>
 </div>
-<div class="modal-body">
+<div class="modal-body"  stop-event="touchend">
   <label for="">Task name</label>
   <input type="text" class="form-control" ng-model="ModalInstanceCtrl.newNode.taskName">
   <label for="">description</label>
@@ -29,7 +29,7 @@
         <label for="">Duration</label>
         <div class="input-group">
           <span class="input-group-btn"><button class="btn btn-default" type="button" ng-click="ModalInstanceCtrl.newNode.duration=ModalInstanceCtrl.newNode.duration-1" ng-disable="ModalInstanceCtrl.newNode.duration<1">-</button></span>
-          <input type="text" placeholder="Days" class="form-control" ng-model="ModalInstanceCtrl.newNode.duration" ng-init="ModalInstanceCtrl.newNode.duration=0">
+          <input type="number" placeholder="Days" class="form-control" ng-model="ModalInstanceCtrl.newNode.duration" ng-init="ModalInstanceCtrl.newNode.duration=0">
           <span class="input-group-btn"><button class="btn btn-default" type="button" ng-click="ModalInstanceCtrl.newNode.duration=ModalInstanceCtrl.newNode.duration+1">+</button></span>
           <span class="input-group-addon">End date:  {{ModalInstanceCtrl.enddt(ModalInstanceCtrl.newNode.startDate,ModalInstanceCtrl.newNode.duration)}}</span>
         </div>
