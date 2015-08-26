@@ -20,14 +20,12 @@
                 min-width: 100%;
             }
             .tree-header-level:first-child {
-                # text-align: center;
                 font-weight: bold;
                 background-color: #fff;
             }
             .content {
                 padding-top: 5px;
                 padding-bottom: 5px;
-                cursor: pointer;
                 .content-holder {
                     display: table;
                     min-width: 100%;
@@ -72,7 +70,9 @@
         border-bottom: none;
     }
 }
-
+.node-edit, .tree-header-level {
+    cursor: pointer;
+}
 @media (min-width: $screen-sm-min) {
   .node-content-row {
     padding-left: 0 !important;

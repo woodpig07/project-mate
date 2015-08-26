@@ -34,9 +34,10 @@
                 <div ng-hide="item._ad_expanded">
                     <div class="tree-level tree-sub-level"
                          onLoad="level=level+1;parent=$parent.item;"
-                         ng-class="{loading:item._ad_loading}"
+                         ng-class="{loading:ad_loading}"
                          ng-repeat="item in item[attrs.childNode] | orderBy:'createDate'"
-                         ng-include="'treeTemplate.html'">
+                         ng-include="'treeTemplate.html'"
+                         repeat-complete="ad_loading=true">
                     </div>
                 </div>
             </script>
@@ -64,8 +65,9 @@
                     ng-controller="ModalCtrl as ModalCtrl"
                      onload="level = 1;parent=treeRoot;"
                      ng-repeat="item in treeRoot[attrs.childNode] | orderBy:'createDate'"
-                     ng-class="{loading:item._ad_loading}"
-                     ng-include="'treeTemplate.html'">
+                     ng-class="{loading:ad_loading}"
+                     ng-include="'treeTemplate.html'"
+                     repeat-complete="ad_loading=true">
                 </div>
             </div>
         </div>

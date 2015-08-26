@@ -20,7 +20,7 @@
 		vm.refresh = function(){
 		  $log.debug('refresh button clicked!');
 		  vm.loading=true;
-		  vm.projectTreeData.subTasks=[];
+		  vm.projectTreeData.subTasks.length = 0;
 		  loadCurrentProject();
 
 		};
@@ -120,8 +120,10 @@
 						$log.debug('ProjectDetailsCtrl -> loadCurrentProject() -> ProjectService.get() -> loadTask.getTaskObject()');
 					  $log.debug(res);
 					  vm.projectTreeData.subTasks.push(res);
+
+					  // hide loading icon when ajax request is done
 					  if (index===(vm.currentProject.tasks.length-1)) {
-						vm.loading=false;
+							vm.loading=false;
 					  }
 					},function(error){
 						$log.debug('ProjectDetailsCtrl -> loadCurrentProject() -> ProjectService.get() -> loadTask.getTaskObject() :: ERROR');

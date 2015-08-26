@@ -5624,13 +5624,11 @@ input.ng-invalid.ng-pristine {
         padding: 0;
         min-width: 100%; }
       .ad-tree-browser-container .tree-view .tree .tree-header-level:first-child {
-        # text-align: center;
         font-weight: bold;
         background-color: #fff; }
       .ad-tree-browser-container .tree-view .tree .content {
         padding-top: 5px;
-        padding-bottom: 5px;
-        cursor: pointer; }
+        padding-bottom: 5px; }
         .ad-tree-browser-container .tree-view .tree .content .content-holder {
           display: table;
           min-width: 100%; }
@@ -5660,6 +5658,9 @@ input.ng-invalid.ng-pristine {
     border-bottom: 1px solid #ddd; }
   .ad-tree-browser-container.tree-bordered .tree-sub-level:last-child {
     border-bottom: none; }
+
+.node-edit, .tree-header-level {
+  cursor: pointer; }
 
 @media (min-width: 768px) {
   .node-content-row {

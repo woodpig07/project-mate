@@ -131,13 +131,11 @@
       node.description = item.description;
       node.startDate = item.startDate;
       node.duration = item.duration;
-      node._ad_loading = true;
       TaskService.update({id:node._id}, node)
                   .$promise
                   .then(function(res){
                     $log.debug('ProjectOperationCtrl -> update() ->root-> TaskService.update()');
                     $log.debug('task update'+res);
-                    node._ad_loading = false;
                     notifications.showSuccess({message: 'Your task updated successfully'});
 
                   },function(error){
