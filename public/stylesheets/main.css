@@ -5674,6 +5674,14 @@ input.ng-invalid.ng-pristine {
     padding-bottom: 10px; }
   .node-content-row .node-edit-btn .btn {
     font-weight: 600; } }
+.animate-tree-level {
+  transition: 0.5s linear all;
+  opacity: 1;
+  max-height: auto; }
+  .animate-tree-level.ng-hide {
+    opacity: 0;
+    max-height: 0; }
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
