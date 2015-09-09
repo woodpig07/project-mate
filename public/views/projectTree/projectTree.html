@@ -31,13 +31,11 @@
                     </div>
 
                 </div>
-                <div ng-hide="item._ad_expanded" class="animate-tree-level">
+                <div collapse="item._ad_expanded">
                     <div class="tree-level tree-sub-level"
-                         onLoad="level=level+1;parent=$parent.item;"
-                         ng-class="{loading:ad_loading}"
+                         onLoad="level=level+1;parent=$parent.item;parentIdx= parentIdx+($parent.$index+1)+'.';"
                          ng-repeat="item in item[attrs.childNode] | orderBy:'createDate'"
-                         ng-include="'treeTemplate.html'"
-                         repeat-complete="ad_loading=false">
+                         ng-include="'treeTemplate.html'">
                     </div>
                 </div>
             </script>
@@ -63,11 +61,9 @@
                 </div>
                 <div class="tree-level tree-top-level border"
                     ng-controller="ModalCtrl as ModalCtrl"
-                     onload="level = 1;parent=treeRoot;"
+                     onload="level = 1;parent=treeRoot;parentIdx='';"
                      ng-repeat="item in treeRoot[attrs.childNode] | orderBy:'createDate'"
-                     ng-class="{loading:ad_loading}"
-                     ng-include="'treeTemplate.html'"
-                     repeat-complete="ad_loading=false">
+                     ng-include="'treeTemplate.html'">
                 </div>
             </div>
         </div>
