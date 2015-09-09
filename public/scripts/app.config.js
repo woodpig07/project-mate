@@ -68,7 +68,7 @@
   }
 
   function debugConfig($logProvider) {
-    $logProvider.debugEnabled(true);
+    $logProvider.debugEnabled(false);
   }
 
   function notifyConfig(notificationsConfigProvider) {
