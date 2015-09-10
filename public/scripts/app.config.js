@@ -76,13 +76,17 @@
     notificationsConfigProvider.setHideDelay(3000);
   }
 
-  function run($rootScope, $location, AuthService){
+  function run($rootScope, $location, $timeout, AuthService, notifications){
     $rootScope.$on('$routeChangeStart',function(event, next){
 
       if(next.access && next.access.loginRequired && !AuthService.isAuthenticated()){
-        alert("DENY");
+        notifications.showError({message: 'Please sign in to view ' + $location.absUrl()});
         event.preventDefault();
-        $location.path('/login');
+
+        $timeout(function() {
+
+          $location.path('/login');
+        }, 3000);
       }
     });
   }

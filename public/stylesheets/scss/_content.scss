@@ -153,15 +153,19 @@ legend {
   }
 }
 @media (max-width: $screen-sm-max) {
-.pm-dl.dl-horizontal{
-  dt{
-    width:auto;
+  .pm-dl.dl-horizontal{
+    dt{
+      width:auto;
+    }
+    dd{
+      margin-left: 0;
+    }
   }
-  dd{
-    margin-left: 0;
+  .editor{
+    line-height: 22px;
   }
 }
-.editor{
-  line-height: 22px;
-}
+
+.modal-backdrop {
+  height: 100%;
 }

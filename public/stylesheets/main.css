@@ -5598,6 +5598,9 @@ legend {
 
   .editor {
     line-height: 22px; } }
+.modal-backdrop {
+  height: 100%; }
+
 input.ng-invalid {
   border: 1px solid red; }
 
