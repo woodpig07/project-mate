@@ -58,6 +58,12 @@ exports.signin = function(req, res, next) {
 			user.password = undefined;
 			user.salt = undefined;
 
+			if (req.body.rememberme) {
+				req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 15; //15 days
+			} else {
+				req.session.cookie.expires = false;
+			}
+
 			req.login(user, function(err) {
 				if (err) {
 					res.status(400).send(err);
