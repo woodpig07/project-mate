@@ -54,7 +54,9 @@ module.exports = {
     		'public/vendor/angular-sanitize/angular-sanitize.js',
     		'public/vendor/angular-touch/angular-touch.js',
 				'public/vendor/ui-bootstrap-tpls-0.12.0.js',
-				'public/vendor/ng-notifications-bar/src/ngNotificationsBar.js'
+				'public/vendor/ng-notifications-bar/src/ngNotificationsBar.js',
+				'public/vendor/raphael-min.js',
+				'public/vendor/flowchart.js'
 			]
 		},
 		css: [
