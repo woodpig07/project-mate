@@ -5,13 +5,14 @@
     .module('projectMateApp')
     .controller('MainCtrl', MainCtrl);
 
-  MainCtrl.$inject = ['$scope','Session','ErrorService','AUTH_EVENTS', '$log'];
+  MainCtrl.$inject = ['$scope', '$location', 'Session','ErrorService','AUTH_EVENTS', '$log'];
 
-  function MainCtrl($scope,Session,ErrorService,AUTH_EVENTS,$log) {
+  function MainCtrl($scope,$location,Session,ErrorService,AUTH_EVENTS,$log) {
     var vm = this;
     vm.errorService = ErrorService;
     vm.currentUser = Session.user;
     vm.navOpen = false;
+    vm.currentRoute = $location.path();
 
     $scope.$on(AUTH_EVENTS.loginSuccess, function() {
       vm.currentUser = Session.user;
@@ -26,9 +27,13 @@
       vm.currentUser = null;
       vm.currentUsername = null;
     });
-    $scope.$on('$routeChangeStart', function(next, current) {
+    $scope.$on('$routeChangeStart', function(event, next, current) {
       vm.navOpen = false;
     });
+    $scope.$on('$routeChangeSuccess', function(event, current, prev) {
+      vm.currentRoute = current.$$route.originalPath;
+    });
+
   }
 })();
 

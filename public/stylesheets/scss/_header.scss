@@ -12,6 +12,14 @@
   .nav {
     float: right;
   }
+
+  .active {
+    
+    .btn-link {
+      background-color: #337ab7;
+      color: #fff;
+    }
+  }
 }
 .header{
   margin-bottom: 30px;

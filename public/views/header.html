@@ -3,13 +3,21 @@
     <span></span>
   </span>
   <ul class="nav nav-pills" ng-class="{'nav-open': MainCtrl.navOpen}">
-    <li class="active"><a ng-href="#/Home">Home</a></li>
-    <li><a ng-href="#/about">About</a></li>
-    <li ng-hide="MainCtrl.currentUser"><a href="#/register">Register </a></li>
-    <li ng-hide="MainCtrl.currentUser"><a href="#/login">Login </a></li>
-    <li ng-if="MainCtrl.currentUser"><a href="#/home/project">Project </a></li>
-    <li ng-if="MainCtrl.currentUser"><a href="#/home/organization">Organization </a></li>
-    <li ng-if="MainCtrl.currentUser" class="hidden-xs">
+    <li ng-class="{active: MainCtrl.currentRoute=='/home'}"><a ng-href="#/home">Home</a></li>
+    <li ng-class="{active: MainCtrl.currentRoute=='/about'}"><a ng-href="#/about">About</a></li>
+    <li ng-hide="MainCtrl.currentUser" ng-class="{active: MainCtrl.currentRoute=='/register'}">
+      <a href="#/register">Register </a>
+    </li>
+    <li ng-hide="MainCtrl.currentUser" ng-class="{active: MainCtrl.currentRoute=='/login'}">
+      <a href="#/login">Login </a>
+    </li>
+    <li ng-if="MainCtrl.currentUser" ng-class="{active: MainCtrl.currentRoute=='/home/project'}">
+      <a href="#/home/project">Project </a>
+    </li>
+    <li ng-if="MainCtrl.currentUser" ng-class="{active: MainCtrl.currentRoute=='/home/organization'}">
+      <a href="#/home/organization">Organization </a>
+    </li>
+    <li ng-if="MainCtrl.currentUser" class="hidden-xs" ng-class="{active: MainCtrl.currentRoute=='/home/profile'}">
       <div dropdown>              
         <button class="btn-link dropdown-toggle" dropdown-toggle>
           Welcome, {{MainCtrl.currentUser.displayname}} &nbsp<span class="caret"></span>

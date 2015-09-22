@@ -5395,6 +5395,9 @@ body {
   border-bottom: 1px solid #e5e5e5; }
   .header-menu .nav {
     float: right; }
+  .header-menu .active .btn-link {
+    background-color: #337ab7;
+    color: #fff; }
 
 .header {
   margin-bottom: 30px; }
