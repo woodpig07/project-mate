@@ -5601,6 +5601,9 @@ legend {
 .modal-backdrop {
   height: 100%; }
 
+.home-start-guide {
+  text-align: center; }
+
 input.ng-invalid {
   border: 1px solid red; }
 

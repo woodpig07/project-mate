@@ -33,6 +33,8 @@
       })
       .when('/home', {
         templateUrl: 'views/home.html',
+        controller: 'HomeCtrl',
+        controllerAs: 'HomeCtrl',
         access: {loginRequired:true}
       })
       .when('/home/profile', {
