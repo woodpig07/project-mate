@@ -42,7 +42,7 @@ module.exports = {
 	},
 	assets: {
 		lib: {
-			css: [],
+			css: ["public/vendor/ng-notifications-bar/css/ngNotificationsBar.css"],
 			js: [
 				'public/vendor/angular/angular.js',
     		'public/vendor/angular-animate/angular-animate.js',
