@@ -93,7 +93,8 @@ module.exports = function(grunt) {
 					mangle: false
 				},
 				files: {
-					'public/dist/application.min.js': '<%= applicationJavaScriptFiles %>'
+					'public/dist/application.min.js': '<%= applicationJavaScriptFiles %>',
+					'public/dist/vendor.min.js': '<%= vendorJavaScriptFiles %>'
 				}
 			}
 		},
@@ -193,6 +194,7 @@ module.exports = function(grunt) {
 		var config = require('./config/config');
 
 		grunt.config.set('applicationJavaScriptFiles', config.assets.js);
+		grunt.config.set('vendorJavaScriptFiles', config.assets.lib.js);
 		grunt.config.set('applicationCSSFiles', config.assets.css);
 	});
 

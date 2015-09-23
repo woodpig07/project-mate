@@ -1,7 +1,7 @@
 {
   "name": "project-mate",
   "description": "built with MEAN stack",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": false,
   "author": "https://github.com/woodpig07",
   "repository": {
@@ -9,11 +9,11 @@
     "url": "https://github.com/woodpig07/project-mate.git"
   },
   "engines": {
-    "node": ">=0.10.28",
-    "npm": ">=1.4.28"
+    "node": "0.10.29",
+    "npm": "2.7.3"
   },
   "scripts": {
-    "start": "grunt",
+    "start": "grunt prod",
     "test": "grunt test",
     "postinstall": "bower install --config.interactive=false"
   },
