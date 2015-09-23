@@ -2,7 +2,8 @@
 
 module.exports = {
 	db: {
-		uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mean',
+		// uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mean',
+		uri: 'mongodb://localhost/mean-dev',
 		options: {
 			user: '',
 			pass: ''
@@ -19,17 +20,20 @@ module.exports = {
 	},
 	assets: {
 		lib: {
-			css: [
-				'public/lib/bootstrap/dist/css/bootstrap.min.css',
-				'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
-			],
+			css: [],
 			js: [
-				'public/lib/angular/angular.min.js',
-				'public/lib/angular-resource/angular-resource.min.js',
-				'public/lib/angular-animate/angular-animate.min.js',
-				'public/lib/angular-ui-router/release/angular-ui-router.min.js',
-				'public/lib/angular-ui-utils/ui-utils.min.js',
-				'public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js'
+				'public/vendor/angular/angular.min.js',
+				'public/vendor/angular-resource/angular-resource.min.js',
+				'public/vendor/angular-animate/angular-animate.min.js',
+				'public/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
+    		'public/vendor/angular-cookies/angular-cookies.min.js',
+    		'public/vendor/angular-route/angular-route.min.js',
+    		'public/vendor/angular-sanitize/angular-sanitize.min.js',
+    		'public/vendor/angular-touch/angular-touch.min.js',
+				'public/vendor/ui-bootstrap-tpls-0.12.0.js',
+				'public/vendor/ng-notifications-bar/dist/ngNotificationsBar.min.js',
+				'public/vendor/raphael-min.js',
+				'public/vendor/flowchart.min.js'				
 			]
 		},
 		css: 'public/dist/application.min.css',

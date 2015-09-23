@@ -6,7 +6,7 @@ module.exports = function(grunt) {
 		serverViews: ['app/views/**/*.*'],
 		serverJS: ['gruntfile.js', 'server.js', 'config/**/*.js', 'app/**/*.js', '!app/tests/'],
 		clientViews: ['public/views/**/*.html'],
-		clientJS: ['public/scripts/**/*.js', 'public/vendor/**/*.js'],
+		clientJS: ['public/scripts/**/*.js'],
 		clientCSS: ['public/stylesheets/*.css'],
 		scss: ['public/stylesheets/*.scss'],
 		mochaTests: ['app/tests/**/*.js']
@@ -15,6 +15,20 @@ module.exports = function(grunt) {
 	// Project Configuration
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
+		env: {
+			test: {
+				NODE_ENV: 'test'
+			},
+			dev: {
+				NODE_ENV: 'development'
+			},
+			prod: {
+				NODE_ENV: 'production'
+			},
+			secure: {
+				NODE_ENV: 'secure'
+			}			
+		},
 		watch: {
 			serverViews: {
 				files: watchFiles.serverViews,
@@ -22,33 +36,33 @@ module.exports = function(grunt) {
 					livereload: true
 				}
 			},
-			// serverJS: {
-			// 	files: watchFiles.serverJS,
-			// 	tasks: ['jshint'],
-			// 	options: {
-			// 		livereload: true
-			// 	}
-			// },
+			serverJS: {
+				files: watchFiles.serverJS,
+				tasks: ['jshint'],
+				options: {
+					livereload: true
+				}
+			},
 			clientViews: {
 				files: watchFiles.clientViews,
 				options: {
 					livereload: true
 				}
 			},
-			// clientJS: {
-			// 	files: watchFiles.clientJS,
-			// 	tasks: ['jshint'],
-			// 	options: {
-			// 		livereload: true
-			// 	}
-			// },
-			// clientCSS: {
-			// 	files: watchFiles.clientCSS,
-			// 	tasks: ['csslint'],
-			// 	options: {
-			// 		livereload: true
-			// 	}
-			// },
+			clientJS: {
+				files: watchFiles.clientJS,
+				tasks: ['jshint'],
+				options: {
+					livereload: true
+				}
+			},
+			clientCSS: {
+				files: watchFiles.clientCSS,
+				tasks: ['csslint'],
+				options: {
+					livereload: true
+				}
+			},
       clientSCSS: {
         files: 'public/stylesheets/scss/*.scss',
         tasks: ['sass'],
@@ -57,14 +71,14 @@ module.exports = function(grunt) {
         }
       }
 		},
-		// jshint: {
-		// 	all: {
-		// 		src: watchFiles.clientJS.concat(watchFiles.serverJS),
-		// 		options: {
-		// 			jshintrc: true
-		// 		}
-		// 	}
-		// },
+		jshint: {
+			all: {
+				src: watchFiles.clientJS.concat(watchFiles.serverJS),
+				options: {
+					jshintrc: true
+				}
+			}
+		},
 		csslint: {
 			options: {
 				csslintrc: '.csslintrc'
@@ -79,7 +93,7 @@ module.exports = function(grunt) {
 					mangle: false
 				},
 				files: {
-					'public/dist/application.min.js': 'public/dist/application.js'
+					'public/dist/application.min.js': '<%= applicationJavaScriptFiles %>'
 				}
 			}
 		},
@@ -99,8 +113,7 @@ module.exports = function(grunt) {
 			dist: {
 				files: [{
 					expand: true,
-					src: 'public/stylesheets/*.css',
-					dest: 'public/stylesheets/'
+					src: 'public/stylesheets/*.css'
 				}]
 			}
 		},
@@ -154,14 +167,6 @@ module.exports = function(grunt) {
 				limit: 10
 			}
 		},
-		env: {
-			test: {
-				NODE_ENV: 'test'
-			},
-			secure: {
-				NODE_ENV: 'secure'
-			}
-		},
 		mochaTest: {
 			src: watchFiles.mochaTests,
 			options: {
@@ -192,7 +197,7 @@ module.exports = function(grunt) {
 	});
 
 	// Default task(s).
-	grunt.registerTask('default', ['concurrent:default']);
+	grunt.registerTask('default', ['env:dev', 'concurrent:default']);
 
 	// Debug task.
 	// grunt.registerTask('debug', ['lint', 'concurrent:debug']);
@@ -206,10 +211,14 @@ module.exports = function(grunt) {
 
 	// Build task(s).
 	// grunt.registerTask('build', ['lint', 'loadConfig', 'autoprefixer', 'ngAnnotate', 'uglify', 'cssmin']);
-	grunt.registerTask('build', ['lint', 'loadConfig', 'autoprefixer', 'uglify', 'cssmin']);
+	grunt.registerTask('build', ['env:dev', 'loadConfig', 'autoprefixer', 'uglify', 'cssmin']);
 
 	// Test task.
 	grunt.registerTask('test', ['test:server', 'test:client']);
 	grunt.registerTask('test:server', ['env:test', 'mochaTest']);
 	grunt.registerTask('test:client', ['env:test', 'karma:unit']);
+
+	// Run in production mode
+	grunt.registerTask('prod', ['build', 'env:prod', 'concurrent:default']);
+
 };

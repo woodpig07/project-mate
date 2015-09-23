@@ -5,3 +5,6 @@ npm-debug.log
 bower_components
 public/vendor
 public/stylesheets/.sass-cache
+public/stylesheets/*.map
+access.log
+

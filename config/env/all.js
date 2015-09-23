@@ -42,9 +42,7 @@ module.exports = {
 	},
 	assets: {
 		lib: {
-			css: [
-				'public/stylesheets/main.css'
-			],
+			css: [],
 			js: [
 				'public/vendor/angular/angular.js',
     		'public/vendor/angular-animate/angular-animate.js',
