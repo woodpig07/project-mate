@@ -103,33 +103,39 @@
 				$log.debug('ProjectDetailsCtrl -> loadCurrentProject() -> ProjectService.get()');
 			  $log.debug(res);
 			  vm.currentProject = {
-				projectId:projectId,
-				projectName:res.projectName,
-				description: res.description,
-				editors:res.editors,
-				tasks:res.tasks
+					projectId:projectId,
+					projectName:res.projectName,
+					description: res.description,
+					editors:res.editors,
+					tasks:res.tasks
 			  };
 			  vm.orgId = res.parentOrg;
 
+
 			  if (angular.isArray(vm.currentProject.tasks)){
-				angular.forEach(vm.currentProject.tasks, function(t,index){
+			  	if (vm.currentProject.tasks.length === 0) {
+			  		vm.loading=false;
+			  		return;
+			  	}
 
-				  var tempObj = null;
-				  loadTask.getTaskObject(t,tempObj)
-					.then(function(res){
-						$log.debug('ProjectDetailsCtrl -> loadCurrentProject() -> ProjectService.get() -> loadTask.getTaskObject()');
-					  $log.debug(res);
-					  vm.projectTreeData.subTasks.push(res);
+					angular.forEach(vm.currentProject.tasks, function(t,index){
 
-					  // hide loading icon when ajax request is done
-					  if (index===(vm.currentProject.tasks.length-1)) {
-							vm.loading=false;
-					  }
-					},function(error){
-						$log.debug('ProjectDetailsCtrl -> loadCurrentProject() -> ProjectService.get() -> loadTask.getTaskObject() :: ERROR');
-					  $log.debug(error);
+					  var tempObj = null;
+					  loadTask.getTaskObject(t,tempObj)
+						.then(function(res){
+							$log.debug('ProjectDetailsCtrl -> loadCurrentProject() -> ProjectService.get() -> loadTask.getTaskObject()');
+						  $log.debug(res);
+						  vm.projectTreeData.subTasks.push(res);
+
+						  // hide loading icon when ajax request is done
+						  if (index===(vm.currentProject.tasks.length-1)) {
+								vm.loading=false;
+						  }
+						},function(error){
+							$log.debug('ProjectDetailsCtrl -> loadCurrentProject() -> ProjectService.get() -> loadTask.getTaskObject() :: ERROR');
+						  $log.debug(error);
+						});
 					});
-				});
 			  }
 			},function(error){
 				$log.debug('ProjectDetailsCtrl -> loadCurrentProject() :: ERROR');
