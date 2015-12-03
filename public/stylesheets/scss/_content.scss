@@ -172,3 +172,13 @@ legend {
 .home-start-guide {
   text-align: center;
 }
+
+.new-org {
+  position: relative;
+
+  .loading {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+}
