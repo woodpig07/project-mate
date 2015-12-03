@@ -72,7 +72,7 @@
           $log.debug(res);
           var newTaskId = res.data._id;
           var newTask = {
-            id:res.data._id,
+            _id:res.data._id,
             taskName:res.data.taskName,
             startDate:res.data.startDate,
             description:res.data.description,
@@ -100,7 +100,7 @@
           var newTaskId = res.data._id;
 
           var newTask = {
-            id:res.data._id,
+            _id:res.data._id,
             taskName:res.data.taskName,
             startDate:res.data.startDate,
             description:res.data.description,
