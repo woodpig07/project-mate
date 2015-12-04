@@ -64,8 +64,8 @@
             id="pwd" 
             name="pwd"
             ng-model="user.password" 
-            ng-minlength=6
-            ng-maxlength=10
+            ng-minlength=7
+            ng-maxlength=20
             required >
         </div>
       </div>
@@ -75,10 +75,10 @@
             your password is required
           </small>
           <small class="error" ng-show="registerForm.pwd.$error.minlength">
-            your password should be least 6 char
+            your password should be least 7 char
           </small>
           <small class="error" ng-show="registerForm.pwd.$error.maxlength">
-            your password should no more than 10 char
+            your password should no more than 20 char
           </small>
         </div>      
       </div>

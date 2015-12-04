@@ -4,20 +4,12 @@
   angular.module('projectMateApp')
     .controller('RegisterCtrl', RegisterCtrl);
 
-  RegisterCtrl.$inject = ['$scope','$location','$http', 'User','ErrorService', '$log'];
+  RegisterCtrl.$inject = ['$scope','$location','$http', 'Session','ErrorService', '$log', '$window'];
 
-  function RegisterCtrl($scope,$location,$http, User,ErrorService, $log) {
+  function RegisterCtrl($scope,$location,$http, Session,ErrorService, $log, $window) {
     var vm = this;
     vm.submitted = false;
     vm.errorService = ErrorService;
-    // $scope.registerForm = function() {
-    //   if ($scope.registerForm.$valid) {
-    //     //TDD
-    //   }else{
-    //     $scope.registerForm.submitted = true;
-    //   }
-
-    // };
 
     vm.register = function(user) {
       if ($scope.registerForm.$valid) {
@@ -29,12 +21,14 @@
         $http.post('/auth/signup',newUser).success(function(data){
           $log.debug('RegisterCtrl -> register() -> POST()');
           $log.debug(data);
-          $location.path('/login');
+          Session.user = data;
+          $location.path('/home');
+          $window.location.reload();
         })
         .error(function(data){
           $log.debug('RegisterCtrl -> register() -> POST() :: ERROR');
           $log.debug(data);
-          vm.errorService.setError(data.errors);
+          vm.errorService.setError(data.message);
   
         });
       }else{

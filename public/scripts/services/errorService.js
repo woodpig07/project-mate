@@ -7,7 +7,7 @@
 
   function ErrorService() {
     return {
-      errorMessage: 'default',
+      errorMessage: '',
       setError: function(msg) {
         this.errorMessage = msg;
       },
