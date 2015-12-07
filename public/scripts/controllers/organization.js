@@ -13,19 +13,24 @@
     vm.organizations = Session.user.organizations;
     var removeMemberModalUrl = '../../views/removeMemberModal.html';
     
-    vm.addMember = function(organ, username){
+    vm.addMember = function(organ){
+      organ.updating = true;
 
-      Organizations.addMember(organ.orgId, username)
+      Organizations.addMember(organ.orgId, organ.newMember)
           .then(function(res){
             $log.debug('OrganizationCtrl -> addMember() -> Organizations.addMember()');
             $log.debug(res.data);
-            organ.addResults = username + 'is added!';
+            organ.newMember = "";
+            organ.addResults = organ.newMember + 'is added!';
             if (vm.members) {
-              vm.organizations[idx].members.push({username:username, role:'member'});
+              vm.organizations[idx].members.push({username:organ.newMember, role:'member'});
             }
           },function(reason){
             organ.addResults = reason.data.message;
-          });
+          })
+          .finally(function() {
+            organ.updating = false;
+          });          
     };
 
     vm.removeMember = function(organ, username, idx){

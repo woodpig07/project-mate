@@ -14,10 +14,15 @@
           <div class="form-group">
             <div class="input-group">
               <div class="input-group-addon">Find existing accounts</div>
-              <input type="text" ng-model="newMember" class="form-control">              
+              <input type="text" ng-model="organ.newMember" class="form-control">              
             </div>
           </div>
-          <button type="button" class="btn btn-default" ng-click="OrganizationCtrl.addMember(organ, newMember)">Add</button>
+          <button type="button"
+            class="btn btn-default"
+            ng-disabled="organ.updating"
+            ng-click="OrganizationCtrl.addMember(organ)">
+            Add
+          </button>
         </form>
         <span class="list-group-item-text" ng-show="organ.addResults">
           {{organ.addResults}}
