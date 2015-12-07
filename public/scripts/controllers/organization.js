@@ -13,18 +13,18 @@
     vm.organizations = Session.user.organizations;
     var removeMemberModalUrl = '../../views/removeMemberModal.html';
     
-    vm.addMember = function(orgId, username){
+    vm.addMember = function(organ, username){
 
-      Organizations.addMember(orgId, username)
+      Organizations.addMember(organ.orgId, username)
           .then(function(res){
             $log.debug('OrganizationCtrl -> addMember() -> Organizations.addMember()');
             $log.debug(res.data);
-            vm.addResults = username + 'is added!';
+            organ.addResults = username + 'is added!';
             if (vm.members) {
               vm.organizations[idx].members.push({username:username, role:'member'});
             }
           },function(reason){
-          vm.addResults = reason.data.message;
+            organ.addResults = reason.data.message;
           });
     };
 

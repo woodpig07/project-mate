@@ -17,10 +17,10 @@
               <input type="text" ng-model="newMember" class="form-control">              
             </div>
           </div>
-          <button type="button" class="btn btn-default" ng-click="OrganizationCtrl.addMember(organ.orgId, newMember)">Add</button>
+          <button type="button" class="btn btn-default" ng-click="OrganizationCtrl.addMember(organ, newMember)">Add</button>
         </form>
-        <span class="list-group-item-text" ng-show="OrganizationCtrl.addResults">
-          {{OrganizationCtrl.addResults}}
+        <span class="list-group-item-text" ng-show="organ.addResults">
+          {{organ.addResults}}
         </span>                
       </li>
       <li class="list-group-item">
