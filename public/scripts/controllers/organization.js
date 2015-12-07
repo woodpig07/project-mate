@@ -14,16 +14,17 @@
     var removeMemberModalUrl = '../../views/removeMemberModal.html';
     
     vm.addMember = function(organ){
+      var username = organ.newMember
       organ.updating = true;
 
-      Organizations.addMember(organ.orgId, organ.newMember)
+      Organizations.addMember(organ.orgId, username)
           .then(function(res){
             $log.debug('OrganizationCtrl -> addMember() -> Organizations.addMember()');
             $log.debug(res.data);
             organ.newMember = "";
-            organ.addResults = organ.newMember + 'is added!';
-            if (vm.members) {
-              vm.organizations[idx].members.push({username:organ.newMember, role:'member'});
+            organ.addResults = username + 'is added!';
+            if (organ.members) {
+              organ.members.push({username:username, role:'member'});
             }
           },function(reason){
             organ.addResults = reason.data.message;
