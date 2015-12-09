@@ -109,7 +109,8 @@ module.exports = function(grunt) {
 		//add vendor prefixed styles
 		autoprefixer: {
 			options: {
-				browsers: ['last 2 versions', 'ie 8', 'ie 9']
+				browsers: ['last 2 versions', 'ie 8', 'ie 9'],
+				remove: false
 			},
 			dist: {
 				files: [{
@@ -213,7 +214,7 @@ module.exports = function(grunt) {
 
 	// Build task(s).
 	// grunt.registerTask('build', ['lint', 'loadConfig', 'autoprefixer', 'ngAnnotate', 'uglify', 'cssmin']);
-	grunt.registerTask('build', ['env:dev', 'loadConfig', 'autoprefixer', 'uglify', 'cssmin']);
+	grunt.registerTask('build', ['env:dev', 'loadConfig', 'uglify', 'autoprefixer', 'cssmin']);
 
 	// Test task.
 	grunt.registerTask('test', ['test:server', 'test:client']);
