@@ -38,33 +38,39 @@
 						$log.debug('ProjectDetailsCtrl -> assignEditor() -> User.query()');
 						$log.debug(u);
 						var user = u[0] ? u[0] : null;
+
 						if (user) {
-							user.organizations.forEach(function(o, i) {
-								if (o.orgId===vm.orgId) {
-									ProjectService.update({id:vm.projectId,$push:{editors:newEditor}})
-										.$promise
-										.then(function(res){
-											$log.debug('ProjectDetailsCtrl -> assignEditor() -> User.get() -> ProjectService.update()');
-											$log.debug(res);
-											vm.hasSuccess = true;
-											vm.hasFeedback = true;
-											vm.currentProject.editors.push(newEditor);
-										},function(error){
-											$log.debug('ProjectDetailsCtrl -> assignEditor() -> User.get() -> ProjectService.update() :: ERROR');
-											$log.debug(error);
-											vm.hasError = true;
-											vm.hasFeedback = true;
-										});
+							var isMember = user.organizations.some(function(o, i) {
+								return o.orgId===vm.orgId;
+							});
 
-								} else if (i === (user.organizations.length-1)) {
-									vm.hasError = true;
-									vm.hasFeedback = true;
-									vm.msg = newEditor + 'has to be member first!';								
-									
-								}
-							});							
+							if (isMember) {
+								ProjectService.update({id:vm.projectId,$push:{editors:newEditor}})
+									.$promise
+									.then(function(res){
+										$log.debug('ProjectDetailsCtrl -> assignEditor() -> User.get() -> ProjectService.update()');
+										$log.debug(res);
+										vm.hasSuccess = true;
+										vm.hasFeedback = true;
+										vm.currentProject.editors.push(newEditor);
+									},function(error){
+										$log.debug('ProjectDetailsCtrl -> assignEditor() -> User.get() -> ProjectService.update() :: ERROR');
+										$log.debug(error);
+										vm.hasError = true;
+										vm.hasFeedback = true;
+									});
+								
+							} else {
+								vm.hasError = true;
+								vm.hasFeedback = true;
+								vm.msg = newEditor + ' has to be member first!';								
+								
+							}
+						
 						} else {
-
+							vm.hasError = true;
+							vm.hasFeedback = true;
+							vm.msg = newEditor + ' is not an registered account!';								
 						}
 
 					},function(error){
